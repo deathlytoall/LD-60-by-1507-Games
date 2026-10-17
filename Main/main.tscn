@@ -19,3 +19,5 @@ common_bag = Array[PackedScene]([ExtResource("2_eunhr")])
 position = Vector2(531, 247)
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("2_2w1kt")
+
+[node name="Node" type="Node" parent="." unique_id=1942844977]
