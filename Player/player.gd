@@ -1,11 +1,16 @@
+class_name Player
 extends CharacterBody2D
+
+@export var room_generator: RoomGenerator
 
 var movespeed = 100
 @onready var arm = $Arm
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if room_generator:
+		room_generator.generate()
+		global_position = room_generator.get_starting_room_center() 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -5,16 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://jmm5gub51lx1" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.tscn" id="3_pu5yk"]
 [ext_resource type="PackedScene" uid="uid://dfixwikjbkm88" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1StartingRoom/@1x1_starting_room.tscn" id="4_b3f8j"]
 [ext_resource type="PackedScene" uid="uid://cje04fwjmjrt5" path="res://TerrianGeneration/Rooms/2x2Rooms/2x2BossRoom/@2x2_boss_room.tscn" id="5_lw7lm"]
+[ext_resource type="PackedScene" uid="uid://bg4p5ncv0a6sb" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1UpgradeRoom/@1x1_upgrade_room.tscn" id="6_sy2ie"]
 
 [node name="CarterMain" type="Node2D" unique_id=883495653]
 
-[node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_xcg7h")]
+[node name="Player" parent="." unique_id=845391095 node_paths=PackedStringArray("room_generator") instance=ExtResource("1_xcg7h")]
 position = Vector2(746, 521)
+room_generator = NodePath("../RoomGenerator")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=664640828]
 script = ExtResource("2_pu5yk")
 
 [node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("3_pu5yk")]
-map_seed = 0
 start_rooms = Array[PackedScene]([ExtResource("4_b3f8j")])
 boss_rooms = Array[PackedScene]([ExtResource("5_lw7lm")])
+upgrade_rooms = Array[PackedScene]([ExtResource("6_sy2ie"), ExtResource("6_sy2ie")])
