@@ -53,7 +53,7 @@ var _base_room_preload := preload("res://TerrianGeneration/RoomHelpers/BaseRoom/
 var _starting_room_center := Vector2.ZERO
 
 enum CellState{
-	NONE,
+	None,
 	OneByOne,
 	TwoByOne,
 	OneByTwo,
@@ -107,6 +107,8 @@ func generate() -> void:
 	if not upgrade_rooms.is_empty():
 		for i in range(0, min(number_of_upgrade_rooms, upgrade_rooms.size())):
 			var rand_i := randi_range(0, grid_map.size() - 1)
+			while grid_map[rand_i] != CellState.OneByOne:
+				rand_i = randi_range(0, grid_map.size() - 1)
 			grid_map[rand_i] = CellState.UpgradeRoom
 	
 	for i in range(grid_map.size()):
@@ -150,7 +152,7 @@ func _render_map(grid: Array[CellState]) -> void:
 				node = upgrade.instantiate()
 				dim = Vector2i.ONE
 		
-		if grid[i] != CellState.NONE:
+		if grid[i] != CellState.None:
 			var map_pos := _index_to_pos(i)
 
 			node.global_position = map_pos
@@ -205,7 +207,7 @@ func _place_one_by_two(grid: Array[CellState], i: int) -> bool:
 		return false
 	
 	grid[i] = CellState.OneByTwo
-	grid[bottom_i] = CellState.NONE
+	grid[bottom_i] = CellState.None
 	
 	return true
 
@@ -224,7 +226,7 @@ func _place_two_by_one(grid: Array[CellState], i: int) -> bool:
 		return false
 	
 	grid[i] = CellState.TwoByOne
-	grid[right_i] = CellState.NONE
+	grid[right_i] = CellState.None
 	
 	return true
 
@@ -246,9 +248,9 @@ func _place_two_by_two(grid: Array[CellState], i: int) -> bool:
 		return false
 	
 	grid[i] = CellState.TwoByTwo
-	grid[bottom_i] = CellState.NONE
-	grid[right_i] = CellState.NONE
-	grid[diagonal_i] = CellState.NONE
+	grid[bottom_i] = CellState.None
+	grid[right_i] = CellState.None
+	grid[diagonal_i] = CellState.None
 	
 	return true
 

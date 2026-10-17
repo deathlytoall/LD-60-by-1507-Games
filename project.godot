@@ -25,6 +25,10 @@ Global="*uid://dr76b83fv8hlf"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+player="used to get the player for the cameras"
+
 [input]
 
 W={

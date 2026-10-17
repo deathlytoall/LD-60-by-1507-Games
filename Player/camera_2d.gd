@@ -1,10 +1,10 @@
+class_name CustomCamera2D
 extends Camera2D
 
-@onready var player = $"../Player"
+@export var player: Player
 
+var speed: int = 3
 
-var speed = 3
-
-
-func _physics_process(delta):
-	position = lerp(position, player.position, speed * delta)
+func _process(delta: float) -> void:
+	if is_current() and player:
+		position = lerp(position, player.position, speed * delta)

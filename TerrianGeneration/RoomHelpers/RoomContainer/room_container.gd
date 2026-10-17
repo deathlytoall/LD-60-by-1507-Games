@@ -11,19 +11,6 @@ var _base_room: BaseRoom
 
 func _ready() -> void:
 	_init_base_room()
-	_init_triggers()
-
-func lock_all_doors() -> void:
-	_base_room.generate_doors(1)
-
-func _init_triggers() -> void:
-	for child in get_children():
-		if child is RoomLockTrigger:
-			child.body_entered.connect(_on_trigger_lock_all_doors)
-
-func _on_trigger_lock_all_doors(body: Node2D) -> void:
-	if body is Player:
-		lock_all_doors()
 
 func _init_base_room() -> void:
 	for child in get_children():
