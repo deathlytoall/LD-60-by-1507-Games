@@ -46,6 +46,10 @@ func _clear_and_generate() -> void:
 	_generate()
 
 func _generate() -> void:
+	if common_bag.is_empty():
+		push_warning("Common bag is empty!")
+		return
+	
 	for x in range(0, layout_size.x):
 		for y in range(0, layout_size.y):
 			var room: BaseRoom = common_bag.pick_random().instantiate()

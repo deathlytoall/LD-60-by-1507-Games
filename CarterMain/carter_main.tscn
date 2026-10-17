@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bsu35h0bhpd7n"]
+
+[ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_xcg7h"]
+[ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_pu5yk"]
+[ext_resource type="PackedScene" uid="uid://baxtvryfadx0f" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.tscn" id="3_pu5yk"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/BaseRoom/base_room.tscn" id="4_b3f8j"]
+
+[node name="CarterMain" type="Node2D" unique_id=883495653]
+
+[node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_xcg7h")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=664640828]
+script = ExtResource("2_pu5yk")
+
+[node name="MuseumRoomGenerator" parent="." unique_id=221795644 instance=ExtResource("3_pu5yk")]
+common_bag = Array[PackedScene]([ExtResource("4_b3f8j")])
