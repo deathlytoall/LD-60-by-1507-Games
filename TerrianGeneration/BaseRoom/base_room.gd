@@ -5,6 +5,11 @@ extends TileMapLayer
 ## Must be a unique name to avoid collisions
 @export var room_name: StringName = ""
 
+@export var door_top: bool = true
+@export var door_bottom: bool = true
+@export var door_left: bool = true
+@export var door_right: bool = true
+
 @export var floor_id: int = 0 :
 	set(v):
 		floor_id = v
@@ -42,3 +47,15 @@ func _generate_room() -> void:
 	for x in range(0, room_size.x + 1):
 		set_cell(Vector2i(x, 0), 1, Vector2i.ZERO)
 		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
+	
+	if door_top:
+		set_cell(Vector2i(int(room_size.x / 2), 0), floor_id, Vector2i.ZERO)
+	
+	if door_bottom:
+		set_cell(Vector2i(int(room_size.x / 2), room_size.y), floor_id, Vector2i.ZERO)
+	
+	if door_left:
+		set_cell(Vector2i(0, int(room_size.y / 2)), floor_id, Vector2i.ZERO)
+	
+	if door_right:
+		set_cell(Vector2i(room_size.x, int(room_size.y / 2)), floor_id, Vector2i.ZERO)
