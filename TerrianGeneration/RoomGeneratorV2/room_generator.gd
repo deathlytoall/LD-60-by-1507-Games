@@ -18,6 +18,20 @@ extends Node2D
 			_load_all_room_data()
 			generate()
 
+@export var start_rooms: Array[PackedScene] :
+	set(v):
+		start_rooms = v
+		if Engine.is_editor_hint():
+			_load_all_room_data()
+			generate()
+
+@export var boss_rooms: Array[PackedScene] :
+	set(v):
+		boss_rooms = v
+		if Engine.is_editor_hint():
+			_load_all_room_data()
+			generate()
+
 const ROOM_PATH := &"res://TerrianGeneration/Rooms/"
 
 var one_by_one_rooms: Array[PackedScene] = []
@@ -35,6 +49,8 @@ enum CellState{
 	TwoByOne,
 	OneByTwo,
 	TwoByTwo,
+	StartingRoom,
+	BossRoom,
 }
 
 func _ready() -> void:
@@ -55,10 +71,25 @@ func generate() -> void:
 		push_warning("2x2 room array not filled")
 		return
 	
+	for child in get_children():
+		if child is RoomContainer:
+			child.queue_free()
+	
 	# Get grid
 	var grid_map: Array[CellState] = []
 	grid_map.resize(map_size.x * map_size.y)
 	grid_map.fill(CellState.OneByOne)
+	
+	if not start_rooms.is_empty():
+		var rand_i := randi_range(0, grid_map.size() - 1)
+		grid_map[rand_i] = CellState.StartingRoom
+	
+	if not boss_rooms.is_empty():
+		var rand_i := randi_range(0, grid_map.size() - 1)
+		var i: int = rand_i
+		while not _place_two_by_two(grid_map, i):
+			i = (i + 1) % grid_map.size()
+		grid_map[i] = CellState.BossRoom
 	
 	for i in range(grid_map.size()):
 		match randi_range(0, 3):
@@ -89,6 +120,12 @@ func _render_map(grid: Array[CellState]) -> void:
 			CellState.OneByTwo:
 				node = one_by_two_rooms.pick_random().instantiate()
 				dim = Vector2i(1, 2)
+			CellState.StartingRoom:
+				node = start_rooms.pick_random().instantiate()
+				dim = Vector2i.ONE
+			CellState.BossRoom:
+				node = boss_rooms.pick_random().instantiate()
+				dim = Vector2i(2, 2)
 		
 		if grid[i] != CellState.NONE:
 			var map_pos := _index_to_pos(i)
@@ -114,6 +151,7 @@ func _load_all_room_data() -> void:
 	_load_room_data(two_by_two_rooms, "2x2Rooms")
 
 func _load_room_data(dest: Array[PackedScene], root: String):
+	dest.clear()
 	var p := DirAccess.open(ROOM_PATH + "/" + root)
 	for room_dir_name in p.get_directories():
 		var room_dir := DirAccess.open(ROOM_PATH + "/" + root + "/" + room_dir_name)
@@ -123,42 +161,46 @@ func _load_room_data(dest: Array[PackedScene], root: String):
 					load(ROOM_PATH + "/" + root + "/" + room_dir_name + "/" + f)
 				)
 
-func _place_one_by_two(grid: Array[CellState], i: int) -> void:
+func _place_one_by_two(grid: Array[CellState], i: int) -> bool:
 	# O
 	# B
 	var origin := _index_to_pos(i)
 	var bottom_i := _pos_to_index(origin + Vector2i.DOWN)
 	
 	if not _is_vector_in_bounds_multiple(origin, origin + Vector2i.DOWN):
-		return
+		return false
 	
 	if not _is_in_bounds_multiple(grid, i, bottom_i):
-		return
+		return false
 	
 	if not _is_writable_multiple(grid, i, bottom_i):
-		return
+		return false
 	
 	grid[i] = CellState.OneByTwo
 	grid[bottom_i] = CellState.NONE
+	
+	return true
 
-func _place_two_by_one(grid: Array[CellState], i: int) -> void:
+func _place_two_by_one(grid: Array[CellState], i: int) -> bool:
 	# O R
 	var origin := _index_to_pos(i)
 	var right_i := _pos_to_index(origin + Vector2i.RIGHT)
 	
 	if not _is_vector_in_bounds_multiple(origin, origin + Vector2i.RIGHT):
-		return
+		return false
 	
 	if not _is_in_bounds_multiple(grid, i, right_i):
-		return
+		return false
 	
 	if not _is_writable_multiple(grid, i, right_i):
-		return
+		return false
 	
 	grid[i] = CellState.TwoByOne
 	grid[right_i] = CellState.NONE
+	
+	return true
 
-func _place_two_by_two(grid: Array[CellState], i: int) -> void:
+func _place_two_by_two(grid: Array[CellState], i: int) -> bool:
 	# O R
 	# B D
 	var origin := _index_to_pos(i)
@@ -167,18 +209,20 @@ func _place_two_by_two(grid: Array[CellState], i: int) -> void:
 	var diagonal_i := _pos_to_index(origin + Vector2i(1, 1))
 	
 	if not _is_vector_in_bounds_multiple(origin, origin + Vector2i.RIGHT, origin + Vector2i.DOWN, origin + Vector2i(1, 1)):
-		return
+		return false
 	
 	if not _is_in_bounds_multiple(grid, i, bottom_i, right_i, diagonal_i):
-		return
+		return false
 	
 	if not _is_writable_multiple(grid, i, bottom_i, right_i, diagonal_i):
-		return
+		return false
 	
 	grid[i] = CellState.TwoByTwo
 	grid[bottom_i] = CellState.NONE
 	grid[right_i] = CellState.NONE
 	grid[diagonal_i] = CellState.NONE
+	
+	return true
 
 func _is_writable_multiple(arr: Array[CellState], ...i: Array) -> bool:
 	for index in i:
