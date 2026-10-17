@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jmm5gub51lx1"]
+
+[ext_resource type="Script" uid="uid://bbhp1yyk0ykn4" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.gd" id="1_lat28"]
+
+[node name="RoomGenerator" type="Node2D" unique_id=728441853]
+script = ExtResource("1_lat28")

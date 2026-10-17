@@ -11,12 +11,10 @@ config_version=5
 [application]
 
 config/name="LD60"
-<<<<<<< Updated upstream
-run/main_scene="uid://0malp7sci0jr"
-=======
->>>>>>> Stashed changes
+run/main_scene="uid://bsu35h0bhpd7n"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<Updatedupstreamrun/main_scene="uid://0malp7sci0jr"
 
 [autoload]
 

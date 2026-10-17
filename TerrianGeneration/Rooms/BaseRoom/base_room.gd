@@ -23,16 +23,21 @@ extends TileMapLayer
 			room_name = str(randi())
 		max_existance_num = v
 
-@export var room_size := Vector2i(16, 16) :
+@export var dimensions := Vector2i.ONE :
 	set(v):
+		dimensions = v
 		clear()
-		room_size = v.max(Vector2(1, 1))
 		_generate_room()
+
+## Size of a 1x1 room
+const ROOM_SIZE = Vector2i(16, 16)
 
 func _ready() -> void:
 	_generate_room()
 
 func _generate_room() -> void:
+	var room_size := ROOM_SIZE * dimensions
+	
 	# Generate Floor
 	for x in range(1, room_size.x):
 		for y in range(1, room_size.y):
@@ -49,13 +54,25 @@ func _generate_room() -> void:
 		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
 	
 	if door_top:
-		set_cell(Vector2i(int(room_size.x / 2), 0), floor_id, Vector2i.ZERO)
+		for i in range(0, dimensions.x):
+			@warning_ignore("integer_division")
+			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
+			set_cell(Vector2i(x_offset, 0), floor_id, Vector2i.ZERO)
 	
 	if door_bottom:
-		set_cell(Vector2i(int(room_size.x / 2), room_size.y), floor_id, Vector2i.ZERO)
+		for i in range(0, dimensions.x):
+			@warning_ignore("integer_division")
+			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
+			set_cell(Vector2i(x_offset, room_size.y), floor_id, Vector2i.ZERO)
 	
 	if door_left:
-		set_cell(Vector2i(0, int(room_size.y / 2)), floor_id, Vector2i.ZERO)
+		for i in range(0, dimensions.y):
+			@warning_ignore("integer_division")
+			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i
+			set_cell(Vector2i(0, y_offset), floor_id, Vector2i.ZERO)
 	
 	if door_right:
-		set_cell(Vector2i(room_size.x, int(room_size.y / 2)), floor_id, Vector2i.ZERO)
+		for i in range(0, dimensions.y):
+			@warning_ignore("integer_division")
+			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i
+			set_cell(Vector2i(room_size.x, y_offset), floor_id, Vector2i.ZERO)

@@ -2,15 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_xcg7h"]
 [ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_pu5yk"]
-[ext_resource type="PackedScene" uid="uid://baxtvryfadx0f" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.tscn" id="3_pu5yk"]
-[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/BaseRoom/base_room.tscn" id="4_b3f8j"]
+[ext_resource type="PackedScene" uid="uid://jmm5gub51lx1" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.tscn" id="3_pu5yk"]
+[ext_resource type="PackedScene" uid="uid://cfv7051obxy5i" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1_test_room.tscn" id="4_lw7lm"]
+[ext_resource type="PackedScene" uid="uid://tahilml6m6j1" path="res://TerrianGeneration/Rooms/2x1Rooms/2x1_test_room.tscn" id="5_qubhg"]
+[ext_resource type="PackedScene" uid="uid://c4fkagxsq75go" path="res://TerrianGeneration/Rooms/2x2Rooms/2x2_test_room.tscn" id="5_sy2ie"]
+[ext_resource type="PackedScene" uid="uid://b8qiqekap52he" path="res://TerrianGeneration/Rooms/1x2Rooms/1x2_test_room.tscn" id="6_qubhg"]
 
 [node name="CarterMain" type="Node2D" unique_id=883495653]
 
 [node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_xcg7h")]
+position = Vector2(746, 521)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=664640828]
 script = ExtResource("2_pu5yk")
 
-[node name="MuseumRoomGenerator" parent="." unique_id=221795644 instance=ExtResource("3_pu5yk")]
-common_bag = Array[PackedScene]([ExtResource("4_b3f8j")])
+[node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("3_pu5yk")]
+scale = Vector2(10, 10)
+one_by_one_rooms = Array[PackedScene]([ExtResource("4_lw7lm")])
+two_by_one_rooms = Array[PackedScene]([ExtResource("5_qubhg")])
+one_by_two_rooms = Array[PackedScene]([ExtResource("6_qubhg")])
+two_by_two_rooms = Array[PackedScene]([ExtResource("5_sy2ie")])
