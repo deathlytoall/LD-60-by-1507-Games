@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://2xwpwyawan2f"]
+
+[ext_resource type="Script" uid="uid://x3vw2qrhvghv" path="res://Player/zap.gd" id="1_lqd8q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
+size = Vector2(194, 20)
+
+[node name="Zap" type="Area2D" unique_id=2046089127]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_lqd8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1378793710]
+position = Vector2(48, -4)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xa11k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=906555745]
+offset_right = 39.0
+offset_bottom = 6.0
+rotation = -0.39618975
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1539656731]
+offset_left = 18.0
+offset_top = -7.999999
+offset_right = 56.999996
+offset_bottom = -1.999999
+rotation = 0.5899213
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1726661918]
+offset_left = 26.000004
+offset_top = -1.9999998
+offset_right = 65.0
+offset_bottom = 4.0
+rotation = -0.1308997
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=6707259]
+offset_left = 44.95688
+offset_top = -4.4748325
+offset_right = 83.95688
+offset_bottom = 1.5251675
+rotation = 0.32463124
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=2114278181]
+offset_left = 44.95688
+offset_top = -4.4748325
+offset_right = 83.95688
+offset_bottom = 1.5251675
+rotation = -0.39618975
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect6" type="ColorRect" parent="." unique_id=1964318014]
+offset_left = 63.668888
+offset_top = -12.0
+offset_right = 102.668884
+offset_bottom = -6.0
+rotation = 0.5899213
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect7" type="ColorRect" parent="." unique_id=1663599490]
+offset_left = 78.0
+offset_top = -2.0
+offset_right = 117.0
+offset_bottom = 4.0
+rotation = -0.1308997
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect8" type="ColorRect" parent="." unique_id=473283342]
+offset_left = 76.0
+offset_top = -3.999998
+offset_right = 115.0
+offset_bottom = 2.000002
+rotation = 0.32463124
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-var movespeed = 100
+var movespeed = 500
 @onready var arm = $Arm
+var zap = preload("res://Player/zap.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +14,9 @@ func _process(_delta) -> void:
 	move()
 	point()
 	if Input.is_action_just_pressed("Mouse_Left"):
-		attack()
+		melee_attack()
+	elif Input.is_action_just_pressed("Mouse_Right"):
+		ranged_attack()
 
 # movement
 func move() -> void:
@@ -33,9 +36,17 @@ func move() -> void:
 func point() -> void:
 	arm.look_at(get_global_mouse_position())
 
-# attack
-func attack() -> void:
+# melee attack
+func melee_attack() -> void:
 	if ($Arm/Temp.visible):
 		$Arm/Temp.visible = false
 	else:
 		$Arm/Temp.visible = true
+
+# ranged attack
+func ranged_attack() -> void:
+	var zap_child = zap.instantiate()
+	get_tree().root.add_child(zap_child)
+	zap_child.position = position
+	zap_child.look_at(get_global_mouse_position())
+	

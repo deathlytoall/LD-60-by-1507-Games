@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://fxvkb7f31rav"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa11k"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvsrl"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[node name="Batttery" type="Control" unique_id=1673931325]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1166149556]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 50.0
+color = Color(0.45490196, 0.45490196, 0.45490196, 1)
+
+[node name="Battery Total" type="ProgressBar" parent="." unique_id=1947427685]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 148.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_xa11k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vvsrl")
+value = 50.3
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1343292879]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 21.0
+offset_right = 163.0
+offset_bottom = 29.0
+color = Color(0.45452422, 0.45452428, 0.45452422, 1)
