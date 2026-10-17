@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var movespeed = 100
+@onready var arm = $Arm
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,13 +9,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta) -> void:
 	move()
-	if Input.is_action_just_pressed("Space"):
+	point()
+	if Input.is_action_just_pressed("Mouse_Left"):
 		attack()
 
 # movement
-func move():
+func move() -> void:
 	velocity = Vector2(0,0)
 	if Input.is_action_pressed("D"):
 		velocity.x += 1
@@ -27,6 +29,13 @@ func move():
 	velocity = velocity.normalized() * movespeed
 	move_and_slide()
 
+# point at mouse
+func point() -> void:
+	arm.look_at(get_global_mouse_position())
+
 # attack
-func attack():
-	pass
+func attack() -> void:
+	if ($Arm/Temp.visible):
+		$Arm/Temp.visible = false
+	else:
+		$Arm/Temp.visible = true

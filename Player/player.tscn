@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkt2u"]
+size = Vector2(10, 64)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=845391095]
 script = ExtResource("1_l8h54")
 
@@ -16,3 +19,16 @@ offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
+
+[node name="Arm" type="Area2D" parent="." unique_id=1924268066]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm" unique_id=463722297]
+position = Vector2(48, 0)
+shape = SubResource("RectangleShape2D_nkt2u")
+
+[node name="Temp" type="ColorRect" parent="Arm" unique_id=44700795]
+offset_left = 43.0
+offset_top = -32.0
+offset_right = 53.0
+offset_bottom = 32.0
+color = Color(1, 1, 0, 1)
