@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_cdrdb"]
 [ext_resource type="PackedScene" uid="uid://baxtvryfadx0f" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.tscn" id="1_oinof"]
 [ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_oinof"]
-[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn" id="2_y20qg"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="2_y20qg"]
 
 [node name="BenMain" type="Node2D" unique_id=702530476]
 

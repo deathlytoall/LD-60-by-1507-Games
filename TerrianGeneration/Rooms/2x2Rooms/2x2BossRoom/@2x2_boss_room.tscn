@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cje04fwjmjrt5"]
 
-[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/Rooms/RoomContainer/room_container.gd" id="1_3vgqy"]
-[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn" id="2_pp286"]
+[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/RoomHelpers/RoomContainer/room_container.gd" id="1_3vgqy"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="2_pp286"]
 
 [node name="2x2BossRoom" type="Node2D" unique_id=1711046561]
 modulate = Color(1, 0.6431373, 0.78431374, 1)

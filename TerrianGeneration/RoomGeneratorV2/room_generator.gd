@@ -47,7 +47,7 @@ var one_by_two_rooms: Array[PackedScene] = []
 var two_by_two_rooms: Array[PackedScene] = []
 
 # Used to get tile map sizes for aligning rooms to grid
-var _base_room_preload := preload("res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn")
+var _base_room_preload := preload("res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn")
 @onready var _base_room: BaseRoom = _base_room_preload.instantiate()
 
 var _starting_room_center := Vector2.ZERO
