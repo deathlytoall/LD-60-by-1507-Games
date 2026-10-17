@@ -52,35 +52,25 @@ func _render_map(grid: Array[CellState]) -> void:
 	var i: int = 0
 	
 	while i < grid.size():
+		var node: Node2D
+	
 		match grid[i]:
 			CellState.OneByOne:
-				var node: Node2D = one_by_one_rooms.pick_random().instantiate()
-				node.global_position = _index_to_pos(i)
-				node.global_position.x *= BaseRoom.ROOM_SIZE.x
-				node.global_position.y *= BaseRoom.ROOM_SIZE.y
-				node.global_position = _corrrect_scale(node.global_position)
-				add_child(node)
+				node = one_by_one_rooms.pick_random().instantiate()
 			CellState.TwoByTwo:
-				var node: Node2D = two_by_two_rooms.pick_random().instantiate()
-				node.global_position = _index_to_pos(i)
-				node.global_position.x *= BaseRoom.ROOM_SIZE.x
-				node.global_position.y *= BaseRoom.ROOM_SIZE.y
-				node.global_position = _corrrect_scale(node.global_position)
-				add_child(node)
+				node = two_by_two_rooms.pick_random().instantiate()
 			CellState.TwoByOne:
-				var node: Node2D = two_by_one_rooms.pick_random().instantiate()
-				node.global_position = _index_to_pos(i)
-				node.global_position.x *= BaseRoom.ROOM_SIZE.x
-				node.global_position.y *= BaseRoom.ROOM_SIZE.y
-				node.global_position = _corrrect_scale(node.global_position)
-				add_child(node)
+				node = two_by_one_rooms.pick_random().instantiate()
 			CellState.OneByTwo:
-				var node: Node2D = one_by_two_rooms.pick_random().instantiate()
-				node.global_position = _index_to_pos(i)
-				node.global_position.x *= BaseRoom.ROOM_SIZE.x
-				node.global_position.y *= BaseRoom.ROOM_SIZE.y
-				node.global_position = _corrrect_scale(node.global_position)
-				add_child(node)
+				node = one_by_two_rooms.pick_random().instantiate()
+
+		if grid[i] != CellState.NONE:
+			node.global_position = _index_to_pos(i)
+			node.global_position.x *= BaseRoom.ROOM_SIZE.x
+			node.global_position.y *= BaseRoom.ROOM_SIZE.y
+			node.global_position = _corrrect_scale(node.global_position)
+			add_child(node)
+			
 		i += 1
 
 func _load_all_room_data() -> void:
