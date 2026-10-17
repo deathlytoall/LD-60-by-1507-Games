@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD60"
-run/main_scene="uid://dggmv72mor6lf"
+run/main_scene="uid://0malp7sci0jr"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

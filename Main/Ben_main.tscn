@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://0malp7sci0jr"]
+
+[ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_cdrdb"]
+[ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_oinof"]
+
+[node name="BenMain" type="Node2D" unique_id=702530476]
+
+[node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_cdrdb")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=529213965]
+script = ExtResource("2_oinof")
