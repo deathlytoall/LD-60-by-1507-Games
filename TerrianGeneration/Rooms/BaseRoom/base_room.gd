@@ -5,16 +5,17 @@ extends TileMapLayer
 ## Must be a unique name to avoid collisions
 @export var room_name: StringName = ""
 
-@export var door_top: bool = true
-@export var door_bottom: bool = true
-@export var door_left: bool = true
-@export var door_right: bool = true
+@export var close_door_top: bool = false
+@export var close_door_bottom: bool = false
+@export var close_door_left: bool = false
+@export var close_door_right: bool = false
 
 @export var floor_id: int = 0 :
 	set(v):
 		floor_id = v
-		clear()
-		_generate_room()
+		if Engine.is_editor_hint():
+			clear()
+			generate_room()
 
 ## max number of rooms of this type that can exist at a time. (-1 means infinite)
 @export var max_existance_num: int = -1 :
@@ -26,16 +27,14 @@ extends TileMapLayer
 @export var dimensions := Vector2i.ONE :
 	set(v):
 		dimensions = v
-		clear()
-		_generate_room()
+		if Engine.is_editor_hint():
+			clear()
+			generate_room()
 
 ## Size of a 1x1 room
 const ROOM_SIZE = Vector2i(16, 16)
 
-func _ready() -> void:
-	_generate_room()
-
-func _generate_room() -> void:
+func generate_room() -> void:
 	var room_size := ROOM_SIZE * dimensions
 	
 	# Generate Floor
@@ -53,25 +52,25 @@ func _generate_room() -> void:
 		set_cell(Vector2i(x, 0), 1, Vector2i.ZERO)
 		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
 	
-	if door_top:
+	if not close_door_top:
 		for i in range(0, dimensions.x):
 			@warning_ignore("integer_division")
 			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
 			set_cell(Vector2i(x_offset, 0), floor_id, Vector2i.ZERO)
-	
-	if door_bottom:
+
+	if not close_door_bottom:
 		for i in range(0, dimensions.x):
 			@warning_ignore("integer_division")
 			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
 			set_cell(Vector2i(x_offset, room_size.y), floor_id, Vector2i.ZERO)
 	
-	if door_left:
+	if not close_door_left:
 		for i in range(0, dimensions.y):
 			@warning_ignore("integer_division")
 			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i
 			set_cell(Vector2i(0, y_offset), floor_id, Vector2i.ZERO)
 	
-	if door_right:
+	if not close_door_right:
 		for i in range(0, dimensions.y):
 			@warning_ignore("integer_division")
 			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i

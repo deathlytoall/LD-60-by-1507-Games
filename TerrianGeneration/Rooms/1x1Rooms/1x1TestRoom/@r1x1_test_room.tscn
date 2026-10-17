@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cfv7051obxy5i"]
 
 [ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn" id="1_32wcj"]
+[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/Rooms/RoomContainer/room_container.gd" id="1_j8768"]
 
-[node name="1x1TestRoom" type="Node2D" unique_id=510613790]
+[node name="1x1TestRoom" type="Node2D" unique_id=1568157732]
+script = ExtResource("1_j8768")
+close_door_top = true
+metadata/_custom_type_script = "uid://bb0o6xthgqcxc"
 
 [node name="BaseRoom" parent="." unique_id=467001853 instance=ExtResource("1_32wcj")]

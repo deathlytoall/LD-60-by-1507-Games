@@ -30,9 +30,19 @@ func _ready() -> void:
 	generate()
 
 func generate() -> void:
-	if one_by_one_rooms.is_empty() or two_by_two_rooms.is_empty():
-		push_warning("Not all room arrays are filled!")
+	if one_by_one_rooms.is_empty():
+		push_warning("1x1 room array not filled!")
 		return
+	elif two_by_one_rooms.is_empty():
+		push_warning("2x1 room array not filled!")
+		return
+	elif one_by_two_rooms.is_empty():
+		push_warning("1x2 room array not filled!")
+		return
+	elif two_by_two_rooms.is_empty():
+		push_warning("2x2 room array not filled")
+		return
+	
 	
 	# Get grid
 	var grid_map: Array[CellState] = []
@@ -52,23 +62,36 @@ func _render_map(grid: Array[CellState]) -> void:
 	var i: int = 0
 	
 	while i < grid.size():
-		var node: Node2D
-	
+		var node: RoomContainer
+		var dim: Vector2i
+		
 		match grid[i]:
 			CellState.OneByOne:
 				node = one_by_one_rooms.pick_random().instantiate()
+				dim = Vector2i.ONE
 			CellState.TwoByTwo:
 				node = two_by_two_rooms.pick_random().instantiate()
+				dim = Vector2i(2, 2)
 			CellState.TwoByOne:
 				node = two_by_one_rooms.pick_random().instantiate()
+				dim = Vector2i(2, 1)
 			CellState.OneByTwo:
 				node = one_by_two_rooms.pick_random().instantiate()
-
+				dim = Vector2i(1, 2)
+		
 		if grid[i] != CellState.NONE:
-			node.global_position = _index_to_pos(i)
+			var map_pos := _index_to_pos(i)
+			
+			node.global_position = map_pos
 			node.global_position.x *= BaseRoom.ROOM_SIZE.x
-			node.global_position.y *= BaseRoom.ROOM_SIZE.y
+			node.global_position.y *= BaseRoom.ROOM_SIZE.y	
 			node.global_position = _corrrect_scale(node.global_position)
+			
+			node.close_door_left = node.close_door_left or (map_pos.x <= 0)
+			node.close_door_right = node.close_door_right or (map_pos.x + dim.x >= map_size.x - 1)
+			node.close_door_top = node.close_door_top or (map_pos.y <= 0)
+			node.close_door_bottom = node.close_door_bottom or (map_pos.y + dim.y >= map_size.y - 1)
+			
 			add_child(node)
 			
 		i += 1
