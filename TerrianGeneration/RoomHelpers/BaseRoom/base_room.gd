@@ -51,27 +51,32 @@ func generate_room() -> void:
 	for x in range(0, room_size.x + 1):
 		set_cell(Vector2i(x, 0), 1, Vector2i.ZERO)
 		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
+
+	generate_doors(floor_id)
+
+func generate_doors(id: int) -> void:
+	var room_size := ROOM_SIZE * dimensions
 	
 	if not close_door_top:
 		for i in range(0, dimensions.x):
 			@warning_ignore("integer_division")
 			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
-			set_cell(Vector2i(x_offset, 0), floor_id, Vector2i.ZERO)
+			set_cell(Vector2i(x_offset, 0), id, Vector2i.ZERO)
 
 	if not close_door_bottom:
 		for i in range(0, dimensions.x):
 			@warning_ignore("integer_division")
 			var x_offset: int = ROOM_SIZE.x / 2 + ROOM_SIZE.x * i
-			set_cell(Vector2i(x_offset, room_size.y), floor_id, Vector2i.ZERO)
+			set_cell(Vector2i(x_offset, room_size.y), id, Vector2i.ZERO)
 	
 	if not close_door_left:
 		for i in range(0, dimensions.y):
 			@warning_ignore("integer_division")
 			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i
-			set_cell(Vector2i(0, y_offset), floor_id, Vector2i.ZERO)
+			set_cell(Vector2i(0, y_offset), id, Vector2i.ZERO)
 	
 	if not close_door_right:
 		for i in range(0, dimensions.y):
 			@warning_ignore("integer_division")
 			var y_offset: int = ROOM_SIZE.y / 2 + ROOM_SIZE.y * i
-			set_cell(Vector2i(room_size.x, y_offset), floor_id, Vector2i.ZERO)
+			set_cell(Vector2i(room_size.x, y_offset), id, Vector2i.ZERO)

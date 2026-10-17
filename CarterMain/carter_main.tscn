@@ -11,6 +11,7 @@
 
 [node name="Player" parent="." unique_id=845391095 node_paths=PackedStringArray("room_generator") instance=ExtResource("1_xcg7h")]
 position = Vector2(746, 521)
+scale = Vector2(0.1, 0.1)
 room_generator = NodePath("../RoomGenerator")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=664640828]

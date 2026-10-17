@@ -162,7 +162,6 @@ func _render_map(grid: Array[CellState]) -> void:
 				_starting_room_center.x += BaseRoom.ROOM_SIZE.x * 0.5
 				_starting_room_center.y += BaseRoom.ROOM_SIZE.y * 0.5
 				_starting_room_center = _corrrect_scale(_starting_room_center)
-				print(_starting_room_center)
 			node.global_position = _corrrect_scale(node.global_position)
 			
 			node.close_door_left = node.close_door_left or (map_pos.x <= 0)

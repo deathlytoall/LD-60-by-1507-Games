@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cv88xriymblv2"]
+
+[ext_resource type="Script" uid="uid://dwtin3kpoutmt" path="res://TerrianGeneration/RoomHelpers/RoomLockTrigger/room_lock_trigger.gd" id="1_e4xe2"]
+
+[node name="RoomLockTrigger" type="Area2D" unique_id=1535942112]
+script = ExtResource("1_e4xe2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
