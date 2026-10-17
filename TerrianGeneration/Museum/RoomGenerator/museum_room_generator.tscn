@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://baxtvryfadx0f"]
+
+[ext_resource type="Script" uid="uid://8j7krhrhds6t" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.gd" id="1_wmlha"]
+
+[node name="MuseumRoomGenerator" type="Node2D" unique_id=221795644]
+script = ExtResource("1_wmlha")
