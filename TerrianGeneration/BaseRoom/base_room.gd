@@ -5,6 +5,12 @@ extends TileMapLayer
 ## Must be a unique name to avoid collisions
 @export var room_name: StringName = ""
 
+@export var floor_id: int = 0 :
+	set(v):
+		floor_id = v
+		clear()
+		_generate_room()
+
 ## max number of rooms of this type that can exist at a time. (-1 means infinite)
 @export var max_existance_num: int = -1 :
 	set(v):
@@ -25,7 +31,7 @@ func _generate_room() -> void:
 	# Generate Floor
 	for x in range(1, room_size.x):
 		for y in range(1, room_size.y):
-			set_cell(Vector2i(x, y), 0, Vector2i.ZERO)
+			set_cell(Vector2i(x, y), floor_id, Vector2i.ZERO)
 	
 	# Generate Vertical Walls
 	for y in range(0, room_size.y):
