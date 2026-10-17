@@ -5,11 +5,12 @@ extends Node2D
 @export var map_seed: int = 1
 @export var map_size := Vector2i(10, 10)
 
-@export_category("Rooms Data")
-@export var one_by_one_rooms: Array[PackedScene] = []
-@export var two_by_one_rooms: Array[PackedScene] = []
-@export var one_by_two_rooms: Array[PackedScene] = []
-@export var two_by_two_rooms: Array[PackedScene] = []
+const ROOM_PATH := &"res://TerrianGeneration/Rooms/"
+
+var one_by_one_rooms: Array[PackedScene] = []
+var two_by_one_rooms: Array[PackedScene] = []
+var one_by_two_rooms: Array[PackedScene] = []
+var two_by_two_rooms: Array[PackedScene] = []
 
 # Used to get tile map sizes for aligning rooms to grid
 var _base_room_preload := preload("res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn")
@@ -25,6 +26,7 @@ enum CellState{
 
 func _ready() -> void:
 	seed(map_seed)
+	_load_all_room_data()
 	generate()
 
 func generate() -> void:
@@ -80,6 +82,22 @@ func _render_map(grid: Array[CellState]) -> void:
 				node.global_position = _corrrect_scale(node.global_position)
 				add_child(node)
 		i += 1
+
+func _load_all_room_data() -> void:
+	_load_room_data(one_by_one_rooms, "1x1Rooms")
+	_load_room_data(one_by_two_rooms, "1x2Rooms")
+	_load_room_data(two_by_one_rooms, "2x1Rooms")
+	_load_room_data(two_by_two_rooms, "2x2Rooms")
+
+func _load_room_data(dest: Array[PackedScene], root: String):
+	var p := DirAccess.open(ROOM_PATH + "/" + root)
+	for room_dir_name in p.get_directories():
+		var room_dir := DirAccess.open(ROOM_PATH + "/" + root + "/" + room_dir_name)
+		for f in room_dir.get_files():
+			if f.begins_with("@r") and f.ends_with(".tscn"):
+				dest.append(
+					load(ROOM_PATH + "/" + root + "/" + room_dir_name + "/" + f)
+				)
 
 func _place_one_by_two(grid: Array[CellState], i: int) -> void:
 	# O
