@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b5dycfgiqlpwg" path="res://Textures/museum_floor.png" id="1_2noct"]
 [ext_resource type="Texture2D" uid="uid://c3gedpkaxkr3c" path="res://Textures/white_test.png" id="2_373tc"]
 [ext_resource type="Texture2D" uid="uid://c61vajvasdxhd" path="res://Textures/museum_ornate_floor.png" id="3_373tc"]
-[ext_resource type="Script" uid="uid://cblslqiypjuia" path="res://TerrianGeneration/Rooms/BaseRoom/base_room.gd" id="3_ksemv"]
+[ext_resource type="Script" uid="uid://cblslqiypjuia" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.gd" id="3_ksemv"]
 [ext_resource type="Texture2D" uid="uid://c1x18gexesayb" path="res://Textures/museum_ornate_floor_edge.png" id="4_ksemv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_373tc"]

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dfixwikjbkm88"]
+
+[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/RoomHelpers/RoomContainer/room_container.gd" id="1_sl2ny"]
+[ext_resource type="PackedScene" uid="uid://cmx8ih50c51ds" path="res://TerrianGeneration/RoomHelpers/RoomCameraTrigger/room_camera_trigger.tscn" id="2_np3ok"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="2_ywaue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_texa1"]
+size = Vector2(271, 270)
+
+[node name="1x1StartingRoom" type="Node2D" unique_id=403988151]
+modulate = Color(0, 1, 0.37254903, 1)
+script = ExtResource("1_sl2ny")
+metadata/_custom_type_script = "uid://bb0o6xthgqcxc"
+
+[node name="RoomCameraTrigger" parent="." unique_id=1924123594 instance=ExtResource("2_np3ok")]
+immidiate_trigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCameraTrigger" unique_id=841110654]
+position = Vector2(135.5, 136)
+shape = SubResource("RectangleShape2D_texa1")
+
+[node name="Camera2D" type="Camera2D" parent="RoomCameraTrigger" unique_id=458576395]
+position = Vector2(136, 136)
+zoom = Vector2(5.3, 5.3)
+limit_left = 0
+limit_top = 0
+limit_right = 272
+limit_bottom = 272
+
+[node name="BaseRoom" parent="." unique_id=467001853 instance=ExtResource("2_ywaue")]

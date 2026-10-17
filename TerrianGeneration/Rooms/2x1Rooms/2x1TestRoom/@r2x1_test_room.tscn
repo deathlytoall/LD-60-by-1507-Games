@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://tahilml6m6j1"]
 
-[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/Rooms/BaseRoom/base_room.tscn" id="1_jc867"]
-[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/Rooms/RoomContainer/room_container.gd" id="1_y2lac"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="1_jc867"]
+[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/RoomHelpers/RoomContainer/room_container.gd" id="1_y2lac"]
 
 [node name="2x1TestRoom" type="Node2D" unique_id=458654554]
 script = ExtResource("1_y2lac")

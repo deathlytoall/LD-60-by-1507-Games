@@ -1,36 +1,19 @@
 [gd_scene format=3 uid="uid://0malp7sci0jr"]
 
 [ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_cdrdb"]
-[ext_resource type="PackedScene" uid="uid://jmm5gub51lx1" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.tscn" id="1_oinof"]
+[ext_resource type="PackedScene" uid="uid://baxtvryfadx0f" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.tscn" id="1_oinof"]
 [ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_oinof"]
-[ext_resource type="PackedScene" uid="uid://fxvkb7f31rav" path="res://Player/batttery.tscn" id="4_y20qg"]
+[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="2_y20qg"]
 
 [node name="BenMain" type="Node2D" unique_id=702530476]
 
-[node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("1_oinof")]
+[node name="MuseumRoomGenerator" parent="." unique_id=221795644 instance=ExtResource("1_oinof")]
+scale = Vector2(10, 10)
+common_bag = Array[PackedScene]([ExtResource("2_y20qg")])
 
 [node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_cdrdb")]
-position = Vector2(576, 326)
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Player" unique_id=2047203109]
-position = Vector2(-576, -326)
-rect = Rect2(-576, -322, 2304, 1296)
+position = Vector2(245, 246)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=529213965]
-position = Vector2(576, 326)
-zoom = Vector2(10, 10)
-limit_enabled = false
+position = Vector2(245, 246)
 script = ExtResource("2_oinof")
-
-[node name="UI" type="Control" parent="." unique_id=323978705]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Batttery" parent="UI" unique_id=1673931325 instance=ExtResource("4_y20qg")]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 72.0
-offset_bottom = 64.0
