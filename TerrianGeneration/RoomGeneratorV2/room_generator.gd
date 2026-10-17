@@ -1,9 +1,22 @@
+@tool
 class_name RoomGenerator
 extends Node2D
 
 @export_category("Map Data")
-@export var map_seed: int = 1
-@export var map_size := Vector2i(10, 10)
+@export var map_seed: int = 1 :
+	set(v):
+		map_seed = v
+		seed(map_seed)
+		if Engine.is_editor_hint():
+			_load_all_room_data()
+			generate()
+
+@export var map_size := Vector2i(10, 10) :
+	set(v):
+		map_size = v
+		if Engine.is_editor_hint():
+			_load_all_room_data()
+			generate()
 
 const ROOM_PATH := &"res://TerrianGeneration/Rooms/"
 
@@ -25,7 +38,6 @@ enum CellState{
 }
 
 func _ready() -> void:
-	seed(map_seed)
 	_load_all_room_data()
 	generate()
 
@@ -42,7 +54,6 @@ func generate() -> void:
 	elif two_by_two_rooms.is_empty():
 		push_warning("2x2 room array not filled")
 		return
-	
 	
 	# Get grid
 	var grid_map: Array[CellState] = []

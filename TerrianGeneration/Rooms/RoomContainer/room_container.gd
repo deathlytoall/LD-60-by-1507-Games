@@ -1,3 +1,4 @@
+@tool
 class_name RoomContainer
 extends Node2D
 
