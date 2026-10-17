@@ -8,6 +8,7 @@
 [node name="Main" type="Node2D" unique_id=372643823]
 
 [node name="Player" parent="." unique_id=352634537 instance=ExtResource("1_yh5la")]
+<<<<<<< Updated upstream
 position = Vector2(1226, 743)
 scale = Vector2(0.5, 0.5)
 
@@ -18,4 +19,11 @@ common_bag = Array[PackedScene]([ExtResource("2_eunhr")])
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1632889235]
 position = Vector2(531, 247)
 zoom = Vector2(1.5, 1.5)
+=======
+position = Vector2(576, 324)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1632889235]
+position = Vector2(576, 324)
+scale = Vector2(-4.2672496, -1.8142376)
+>>>>>>> Stashed changes
 script = ExtResource("2_2w1kt")
