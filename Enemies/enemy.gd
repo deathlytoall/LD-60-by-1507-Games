@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var color_rect = $ColorRect
+@onready var animated_sprite_2d = $AnimatedSprite2D
 var health = 10
 var single = false
 var player = null
@@ -9,14 +10,42 @@ var speed = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var type = randf_range(0, 10)
-	color_rect.color = Color(1,type/10.0,0,1)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player is CharacterBody2D:
 		var rad = get_angle_to(player.global_position)
-		position += Vector2(cos(rad) * speed, sin(rad) * speed)
+		var velocity = Vector2(cos(rad) * speed, sin(rad) * speed)
+		var animation = 0
+		position += velocity
+		velocity = velocity.round()
+		print(velocity)
+		if velocity == Vector2(0, 1):
+			animation = 0
+		elif velocity == Vector2(-1, 1):
+			animation = 1
+		elif velocity == Vector2(-1, 0):
+			animation = 2
+		elif velocity == Vector2(-1, -1):
+			animation = 3
+		elif velocity == Vector2(0, -1):
+			animation = 4
+		elif velocity == Vector2(1, -1):
+			animation = 5
+		elif velocity == Vector2(1, 0):
+			animation = 6
+		elif velocity == Vector2(1, 1):
+			animation = 7
+		var frame = animated_sprite_2d.frame
+		if animated_sprite_2d.frame == animation:
+			animated_sprite_2d.pause()
+		elif animation - frame < 4 and animation - frame > 0 or animation - frame < -4:
+			animated_sprite_2d.play()
+		else:
+			animated_sprite_2d.play_backwards()
+
 
 func take_damage(damage):
 	health -= damage

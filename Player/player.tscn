@@ -137,7 +137,9 @@ script = ExtResource("1_l8h54")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4ntmi")
-frame_progress = 0.4864546
+frame = 12
+frame_progress = 0.3977527
+speed_scale = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1612569969]
 shape = SubResource("RectangleShape2D_xa11k")

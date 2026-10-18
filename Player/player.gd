@@ -7,6 +7,7 @@ var item = preload("res://Items/item.tscn")
 var items = Global.items
 var movespeed = 100
 @onready var arm = $Arm
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 
 func _ready():
@@ -26,6 +27,7 @@ func _process(_delta) -> void:
 
 # movement
 func move() -> void:
+	var animation = 0
 	velocity = Vector2(0,0)
 	if Input.is_action_pressed("D"):
 		velocity.x += 1
@@ -35,7 +37,30 @@ func move() -> void:
 		velocity.y -= 1
 	if Input.is_action_pressed("S"):
 		velocity.y += 1
+	if velocity == Vector2(0, 1):
+		animation = 0
+	elif velocity == Vector2(-1, 1):
+		animation = 2
+	elif velocity == Vector2(-1, 0):
+		animation = 4
+	elif velocity == Vector2(-1, -1):
+		animation = 6
+	elif velocity == Vector2(0, -1):
+		animation = 8
+	elif velocity == Vector2(1, -1):
+		animation = 10
+	elif velocity == Vector2(1, 0):
+		animation = 12
+	elif velocity == Vector2(1, 1):
+		animation = 14
 	velocity = velocity.normalized() * movespeed
+	var frame = animated_sprite_2d.frame
+	if animated_sprite_2d.frame == animation:
+		animated_sprite_2d.pause()
+	elif animation - frame < 8 and animation - frame > 0 or animation - frame < -8:
+		animated_sprite_2d.play()
+	else:
+		animated_sprite_2d.play_backwards()
 	move_and_slide()
 
 # point at mouse
@@ -63,6 +88,7 @@ func zap(dir: float) -> void:
 	zap_child.position = position
 	zap_child.look_at(get_global_mouse_position())
 	zap_child.rotation += deg_to_rad(360 * dir)
+
 
 
 func _on_pick_up(item):
