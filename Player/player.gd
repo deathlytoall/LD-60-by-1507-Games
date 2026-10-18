@@ -8,6 +8,8 @@ var items = Global.items
 var movespeed = 100
 @onready var arm = $Arm
 @onready var animated_sprite_2d = $AnimatedSprite2D
+var health = 100
+@onready var damage_timer = $"AnimatedSprite2D/Damage timer"
 
 
 func _ready():
@@ -69,6 +71,7 @@ func point() -> void:
 
 # attack
 func attack() -> void:
+	take_damage(1)
 	if ($Arm/Temp.visible):
 		$Arm/Temp.visible = false
 	else:
@@ -89,7 +92,13 @@ func zap(dir: float) -> void:
 	zap_child.look_at(get_global_mouse_position())
 	zap_child.rotation += deg_to_rad(360 * dir)
 
-
+func take_damage(damage: int) -> void:
+	health -= damage
+	animated_sprite_2d.animation = "damage"
+	damage_timer.start(.5)
 
 func _on_pick_up(item):
 	items.append(item)
+
+func _on_damage_timer_timeout():
+	animated_sprite_2d.animation = "default"
