@@ -6,18 +6,21 @@ var health = 10
 var single = false
 var player = null
 var speed = 1
+var rad: float
+var velocity: Vector2
+var back: = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var type = randf_range(0, 10)
+	var _type = randf_range(0, 10)
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if player is CharacterBody2D:
-		var rad = get_angle_to(player.global_position)
-		var velocity = Vector2(cos(rad) * speed, sin(rad) * speed)
+		rad = get_angle_to(player.global_position)
+		velocity = Vector2(cos(rad) * speed, sin(rad) * speed) * back
 		var animation = 0
 		position += velocity
 		velocity = velocity.round()
@@ -50,16 +53,28 @@ func take_damage(damage):
 	health -= damage
 	if health <= 0 and not single:
 		single = true
+		var item = preload("res://Items/item.tscn")
+		var item_clone = item.instantiate()
+		get_tree().root.add_child(item_clone)
+		item_clone.global_position = Vector2(global_position.x, global_position.y)
+		item_clone.item_type = -1
 		queue_free()
-		print(get_parent())
-		
-		print(get_parent().enemies_to_kill)
 		get_parent().enemies_to_kill -= 1
 		if get_parent().enemies_to_kill == 0:
-			get_parent().generate_doors(0)
+			get_parent().open_doors()
 			get_parent().generate_item()
 
 
 func _on_player_detection_body_entered(body):
 	if body is CharacterBody2D:
 		player = body
+
+
+func _on_body_entered(body):
+	if body is CharacterBody2D:
+		body.take_damage(5)
+	back = -2
+
+
+func _on_body_exited(body):
+	back = 1

@@ -47,7 +47,7 @@ var one_by_two_rooms: Array[PackedScene] = []
 var two_by_two_rooms: Array[PackedScene] = []
 
 # Used to get tile map sizes for aligning rooms to grid
-var _base_room_preload := preload("res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn")
+var _base_room_preload := load("res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn")
 @onready var _base_room: BaseRoom = _base_room_preload.instantiate()
 
 var _starting_room_center := Vector2.ZERO
@@ -154,10 +154,11 @@ func _render_map(grid: Array[CellState]) -> void:
 		
 		if grid[i] != CellState.None:
 			var map_pos := _index_to_pos(i)
-
+			print(map_pos)
 			node.global_position = map_pos
 			node.global_position.x *= BaseRoom.ROOM_SIZE.x
 			node.global_position.y *= BaseRoom.ROOM_SIZE.y
+			node.global_position += Vector2(map_pos)
 			
 			if grid[i] == CellState.StartingRoom:
 				_starting_room_center = node.global_position

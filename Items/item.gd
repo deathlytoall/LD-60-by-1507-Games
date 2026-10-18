@@ -13,6 +13,8 @@ func _process(_delta):
 
 
 func _on_body_entered(_body):
-	if not Global.items.has(item_type):
+	if item_type >= 0 and not Global.items.has(item_type):
 		Global.items.append(item_type)
+	else:
+		Global.emit_signal("pick_up", -1)
 	queue_free()

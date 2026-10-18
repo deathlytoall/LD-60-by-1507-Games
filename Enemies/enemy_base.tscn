@@ -91,4 +91,6 @@ sprite_frames = SubResource("SpriteFrames_xa11k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detection" unique_id=347942574]
 shape = SubResource("RectangleShape2D_vvsrl")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]

@@ -8,7 +8,7 @@ var items = Global.items
 var movespeed = 100
 @onready var arm = $Arm
 @onready var animated_sprite_2d = $AnimatedSprite2D
-var health = 100
+var health: float = 100.0
 @onready var damage_timer = $"AnimatedSprite2D/Damage timer"
 
 
@@ -26,6 +26,7 @@ func _process(_delta) -> void:
 		attack()
 	if Input.is_action_just_pressed("Mouse_Right"):
 		ranged_attack()
+	$CanvasLayer/Batttery.update_total(health)
 
 # movement
 func move() -> void:
@@ -64,7 +65,7 @@ func move() -> void:
 		animated_sprite_2d.play()
 	else:
 		animated_sprite_2d.play_backwards()
-		
+	
 	if animated_sprite_2d.frame in [0, 1, 15]:
 		$RightLight.hide()
 		$LeftLight.hide()
@@ -99,13 +100,14 @@ func point() -> void:
 
 # attack
 func attack() -> void:
-	take_damage(1)
+	
 	if ($Arm/Temp.visible):
 		$Arm/Temp.visible = false
 	else:
 		$Arm/Temp.visible = true
 
 func ranged_attack() -> void:
+	health -= .5
 	zap(0)
 	if items.has(0):
 		zap(randf_range(0, 1))
@@ -120,13 +122,21 @@ func zap(dir: float) -> void:
 	zap_child.look_at(get_global_mouse_position())
 	zap_child.rotation += deg_to_rad(360 * dir)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: float) -> void:
 	health -= damage
+	var prev_frame = animated_sprite_2d.frame
 	animated_sprite_2d.animation = "damage"
+	animated_sprite_2d.frame = prev_frame
 	damage_timer.start(.5)
 
-func _on_pick_up(item):
-	items.append(item)
+func _on_pick_up(_item):
+	if _item == -1:
+		health += 5
+		if health > 100:
+			health = 100
 
 func _on_damage_timer_timeout():
 	animated_sprite_2d.animation = "default"
+
+func _on_timer_timeout():
+	health -= .25

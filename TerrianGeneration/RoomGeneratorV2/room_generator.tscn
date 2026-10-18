@@ -4,3 +4,4 @@
 
 [node name="RoomGenerator" type="Node2D" unique_id=728441853]
 script = ExtResource("1_lat28")
+map_seed = 3050386187
