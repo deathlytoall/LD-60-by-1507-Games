@@ -55,6 +55,7 @@ func move() -> void:
 		animation = 12
 	elif velocity == Vector2(1, 1):
 		animation = 14
+	
 	velocity = velocity.normalized() * movespeed
 	var frame = animated_sprite_2d.frame
 	if animated_sprite_2d.frame == animation:
@@ -63,6 +64,33 @@ func move() -> void:
 		animated_sprite_2d.play()
 	else:
 		animated_sprite_2d.play_backwards()
+		
+	if animated_sprite_2d.frame in [0, 1, 15]:
+		$RightLight.hide()
+		$LeftLight.hide()
+		$FrontLight.show()
+		$BackLight.hide()
+	elif animated_sprite_2d.frame in [2, 3, 4, 5, 6]:
+		$LeftLight.show()
+		$RightLight.hide()
+		$FrontLight.hide()
+		$BackLight.hide()
+	elif animated_sprite_2d.frame in [10, 11, 12, 13, 14]:
+		$RightLight.show()
+		$LeftLight.hide()
+		$FrontLight.hide()
+		$BackLight.hide()
+	elif animated_sprite_2d.frame == 8:
+		$RightLight.hide()
+		$LeftLight.hide()
+		$FrontLight.hide()
+		$BackLight.show()
+	else:
+		$RightLight.hide()
+		$LeftLight.hide()
+		$FrontLight.hide()
+		$BackLight.hide()
+	
 	move_and_slide()
 
 # point at mouse

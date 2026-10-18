@@ -11,14 +11,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var rad = rotation
 	position += Vector2(cos(rad) * speed, sin(rad) * speed)
 
 
 
 func _on_area_entered(area):
-	if area.name == "EnemyBase":
+	if area is Enemy:
 		area.take_damage(3)
 		if not items.has(3) or peirces == 0:
 			queue_free()
