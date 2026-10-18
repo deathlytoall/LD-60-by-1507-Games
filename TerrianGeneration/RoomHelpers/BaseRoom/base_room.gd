@@ -9,6 +9,7 @@ extends TileMapLayer
 @export var close_door_bottom: bool = false
 @export var close_door_left: bool = false
 @export var close_door_right: bool = false
+@export var enemies_to_kill: int = 0
 
 @export var floor_id: int = 0 :
 
@@ -45,13 +46,13 @@ func generate_room() -> void:
 	
 	# Generate Vertical Walls
 	for y in range(0, room_size.y):
-		set_cell(Vector2i(0, y), 1, Vector2i.ZERO)
-		set_cell(Vector2i(room_size.x, y), 1, Vector2i.ZERO)
+		set_cell(Vector2i(0, y), 2, Vector2i.ZERO)
+		set_cell(Vector2i(room_size.x, y), 2, Vector2i.ZERO)
 	
 	# Generate Horizontal Walls
 	for x in range(0, room_size.x + 1):
-		set_cell(Vector2i(x, 0), 1, Vector2i.ZERO)
-		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
+		set_cell(Vector2i(x, 0), 5, Vector2i.ZERO)
+		set_cell(Vector2i(x, room_size.y), 2, Vector2i.ZERO)
 
 	generate_doors(floor_id)
 
@@ -63,13 +64,14 @@ func generate_item() -> void:
 
 
 func spawn_enemies(amount: int) -> void:
-	var enemy = preload("res://Enemies/enemy_base.tscn")
+	enemies_to_kill = amount
+	var enemy_clone
 	for x in range(0, amount):
-		var enemy_clone = enemy.instantiate()
-		add_child(enemy_clone)
+		var enemy = preload("res://Enemies/enemy_base.tscn")
+		enemy_clone = enemy.instantiate()
+		add_child(enemy_clone, true)
 		enemy_clone.global_position = Vector2(global_position.x + randi_range(30,200), global_position.y + randi_range(30,200))
-		print(enemy_clone.global_position)
-		print(enemy)
+		
 
 func generate_doors(id: int) -> void:
 	var room_size := ROOM_SIZE * dimensions

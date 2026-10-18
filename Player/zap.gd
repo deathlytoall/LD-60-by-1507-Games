@@ -18,7 +18,7 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	if area.name == "EnemyBase":
+	if area is Enemy:
 		area.take_damage(3)
 		if not items.has(3) or peirces == 0:
 			queue_free()

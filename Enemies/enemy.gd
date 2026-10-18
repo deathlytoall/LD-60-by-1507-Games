@@ -1,6 +1,6 @@
 extends Area2D
+class_name Enemy
 
-@onready var color_rect = $ColorRect
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var health = 10
 var single = false
@@ -21,7 +21,6 @@ func _process(delta):
 		var animation = 0
 		position += velocity
 		velocity = velocity.round()
-		print(velocity)
 		if velocity == Vector2(0, 1):
 			animation = 0
 		elif velocity == Vector2(-1, 1):
@@ -52,8 +51,13 @@ func take_damage(damage):
 	if health <= 0 and not single:
 		single = true
 		queue_free()
-		get_parent().generate_doors(0)
-		get_parent().generate_item()
+		print(get_parent())
+		
+		print(get_parent().enemies_to_kill)
+		get_parent().enemies_to_kill -= 1
+		if get_parent().enemies_to_kill == 0:
+			get_parent().generate_doors(0)
+			get_parent().generate_item()
 
 
 func _on_player_detection_body_entered(body):
