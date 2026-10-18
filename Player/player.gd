@@ -15,6 +15,7 @@ var mult = 1
 var scaler = 1
 var rate = 1.0
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
 	Global.pick_up.connect(_on_pick_up)
@@ -164,11 +165,14 @@ func zap(dir: float) -> void:
 	zap_child.rotation += deg_to_rad(360 * dir)
 
 func take_damage(damage: float) -> void:
-	health -= damage
-	var prev_frame = animated_sprite_2d.frame
-	animated_sprite_2d.animation = "damage"
-	animated_sprite_2d.frame = prev_frame
-	damage_timer.start(.5)
+	if damage_timer.is_stopped():
+		audio_stream_player.pitch_scale = randf_range(0.8, 1)
+		audio_stream_player.play()
+		health -= damage
+		var prev_frame = animated_sprite_2d.frame
+		animated_sprite_2d.animation = "damage"
+		animated_sprite_2d.frame = prev_frame
+		damage_timer.start(.5)
 
 func _on_pick_up(_item):
 	var prev_frame = animated_sprite_2d.frame

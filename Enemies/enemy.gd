@@ -5,7 +5,7 @@ class_name Enemy
 var health = 10
 var single = false
 var player = null
-var speed = 1
+var speed = 0.1
 var rad: float
 var velocity: Vector2
 var back: = 1
@@ -56,14 +56,14 @@ func take_damage(damage):
 		var item = preload("res://Items/item.tscn")
 		var item_clone = item.instantiate()
 		if randf() > 0.7:
-			get_tree().root.add_child(item_clone)
+			get_tree().root.add_child.call_deferred(item_clone)
 			item_clone.global_position = Vector2(global_position.x, global_position.y)
 			item_clone.item_type = -1
 		queue_free()
-		get_parent().enemies_to_kill -= 1
-		if get_parent().enemies_to_kill == 0:
-			get_parent().open_doors()
-			get_parent().generate_item()
+		#get_parent().enemies_to_kill -= 1
+		#if get_parent().enemies_to_kill == 0:
+			#get_parent().open_doors()
+			#get_parent().generate_item()
 
 
 func _on_player_detection_body_entered(body):
@@ -72,10 +72,9 @@ func _on_player_detection_body_entered(body):
 
 
 func _on_body_entered(body):
-	if body is CharacterBody2D:
+	if body is Player:
 		body.take_damage(5)
 		back = -2
-
 
 func _on_body_exited(body):
 	back = 1
