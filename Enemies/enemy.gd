@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var color_rect = $ColorRect
 var health = 10
+var single = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,5 +16,8 @@ func _process(delta):
 
 func take_damage(damage):
 	health -= damage
-	if health <= 0:
+	if health <= 0 and not single:
+		single = true
 		queue_free()
+		get_parent().generate_doors(0)
+		get_parent().generate_item()

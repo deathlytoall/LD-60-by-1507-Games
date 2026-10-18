@@ -1,5 +1,7 @@
 extends Node
 
+signal pick_up(item: int)
+var items = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

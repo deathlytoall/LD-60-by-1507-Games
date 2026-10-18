@@ -11,6 +11,7 @@ extends TileMapLayer
 @export var close_door_right: bool = false
 
 @export var floor_id: int = 0 :
+
 	set(v):
 		floor_id = v
 		if Engine.is_editor_hint():
@@ -53,6 +54,22 @@ func generate_room() -> void:
 		set_cell(Vector2i(x, room_size.y), 1, Vector2i.ZERO)
 
 	generate_doors(floor_id)
+
+func generate_item() -> void:
+	var item = preload("res://Items/item.tscn")
+	var item_clone = item.instantiate()
+	get_tree().root.add_child(item_clone)
+	item_clone.global_position = Vector2(global_position.x + randi_range(30,200), global_position.y + randi_range(30,200))
+
+
+func spawn_enemies(amount: int) -> void:
+	var enemy = preload("res://Enemies/enemy_base.tscn")
+	for x in range(0, amount):
+		var enemy_clone = enemy.instantiate()
+		add_child(enemy_clone)
+		enemy_clone.global_position = Vector2(global_position.x + randi_range(30,200), global_position.y + randi_range(30,200))
+		print(enemy_clone.global_position)
+		print(enemy)
 
 func generate_doors(id: int) -> void:
 	var room_size := ROOM_SIZE * dimensions

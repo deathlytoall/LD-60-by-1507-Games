@@ -1,19 +1,28 @@
 [gd_scene format=3 uid="uid://0malp7sci0jr"]
 
 [ext_resource type="PackedScene" uid="uid://bacj81hxgshvh" path="res://Player/player.tscn" id="1_cdrdb"]
-[ext_resource type="PackedScene" uid="uid://baxtvryfadx0f" path="res://TerrianGeneration/Museum/RoomGenerator/museum_room_generator.tscn" id="1_oinof"]
+[ext_resource type="PackedScene" uid="uid://jmm5gub51lx1" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.tscn" id="1_oinof"]
 [ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="2_oinof"]
-[ext_resource type="PackedScene" uid="uid://ctfaawcnd4ly8" path="res://TerrianGeneration/RoomHelpers/BaseRoom/base_room.tscn" id="2_y20qg"]
+[ext_resource type="PackedScene" uid="uid://dfixwikjbkm88" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1StartingRoom/@1x1_starting_room.tscn" id="4_6755t"]
+[ext_resource type="PackedScene" uid="uid://l2x6wyqkqlla" path="res://Items/item.tscn" id="4_y20qg"]
+[ext_resource type="PackedScene" uid="uid://cje04fwjmjrt5" path="res://TerrianGeneration/Rooms/2x2Rooms/2x2BossRoom/@2x2_boss_room.tscn" id="5_a7jvm"]
+[ext_resource type="PackedScene" uid="uid://cfv7051obxy5i" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1TestRoom/@r1x1_test_room.tscn" id="6_4hev0"]
 
 [node name="BenMain" type="Node2D" unique_id=702530476]
-
-[node name="MuseumRoomGenerator" parent="." unique_id=221795644 instance=ExtResource("1_oinof")]
-scale = Vector2(10, 10)
-common_bag = Array[PackedScene]([ExtResource("2_y20qg")])
 
 [node name="Player" parent="." unique_id=845391095 instance=ExtResource("1_cdrdb")]
 position = Vector2(245, 246)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=529213965]
 position = Vector2(245, 246)
+zoom = Vector2(2, 2)
 script = ExtResource("2_oinof")
+
+[node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("1_oinof")]
+start_rooms = Array[PackedScene]([ExtResource("4_6755t")])
+boss_rooms = Array[PackedScene]([ExtResource("5_a7jvm")])
+upgrade_rooms = Array[PackedScene]([ExtResource("6_4hev0")])
+
+[node name="Item" parent="." unique_id=1382919986 instance=ExtResource("4_y20qg")]
+
+[connection signal="body_entered" from="Item" to="Player" method="_on_item_body_entered"]
