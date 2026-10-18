@@ -14,6 +14,7 @@ var single = 0
 var mult = 1
 var scaler = 1
 var rate = 1.0
+var charge_mult = 1
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -180,9 +181,11 @@ func _on_pick_up(_item):
 	animated_sprite_2d.frame = prev_frame
 	$"AnimatedSprite2D/Item Timer".start(1)
 	if _item == -1:
-		health += 5
+		health += 5 * charge_mult
 		if health > 100:
 			health = 100
+	if _item == 4:
+		charge_mult = 2
 	elif _item == 5:
 		Global.damage += 2
 	elif _item == 6:

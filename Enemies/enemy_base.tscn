@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hcw6nytel11y" path="res://Enemies/enemy.gd" id="1_8xqx4"]
 [ext_resource type="Texture2D" uid="uid://cvyoxb0yyre7n" path="res://Textures/roomba_idle.png" id="2_gk4pb"]
 [ext_resource type="Texture2D" uid="uid://bivtwpjd2u436" path="res://Textures/shadow.png" id="2_guy7p"]
+[ext_resource type="AudioStream" uid="uid://djcml6t8tvjb1" path="res://Sounds/Hit1.wav" id="4_mmkw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
 size = Vector2(64, 64)
@@ -98,6 +99,10 @@ sprite_frames = SubResource("SpriteFrames_xa11k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detection" unique_id=347942574]
 visible = false
 shape = SubResource("RectangleShape2D_vvsrl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1722058705]
+stream = ExtResource("4_mmkw6")
+volume_db = -0.2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

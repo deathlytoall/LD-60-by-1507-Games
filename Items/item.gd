@@ -11,6 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	$AnimatedSprite2D.frame = item_type + 1
 	if collected:
 		if player.animated_sprite_2d.frame < 3 or player.animated_sprite_2d.frame > 13:
 			visible = true

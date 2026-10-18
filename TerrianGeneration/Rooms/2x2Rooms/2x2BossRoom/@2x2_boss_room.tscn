@@ -23,6 +23,7 @@ position = Vector2(264, 252)
 [node name="RoomCameraTrigger" parent="." unique_id=1924123594 instance=ExtResource("3_sgs83")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCameraTrigger" unique_id=1764450750]
+visible = false
 position = Vector2(272, 272)
 shape = SubResource("RectangleShape2D_2capc")
 

@@ -10,6 +10,8 @@ var rad: float
 var velocity: Vector2
 var back: = 1
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _type = randf_range(0, 10)
@@ -51,6 +53,8 @@ func _process(_delta):
 
 func take_damage(damage):
 	health -= damage
+	audio_stream_player.pitch_scale = randf_range(0.7, 1)
+	audio_stream_player.play()
 	if health <= 0 and not single:
 		single = true
 		var item = preload("res://Items/item.tscn")
