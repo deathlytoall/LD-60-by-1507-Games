@@ -44,7 +44,6 @@ func point() -> void:
 
 # attack
 func attack() -> void:
-	print(global_position)
 	if ($Arm/Temp.visible):
 		$Arm/Temp.visible = false
 	else:
@@ -64,7 +63,6 @@ func zap(dir: float) -> void:
 	zap_child.position = position
 	zap_child.look_at(get_global_mouse_position())
 	zap_child.rotation += deg_to_rad(360 * dir)
-	print(dir)
 
 
 func _on_pick_up(item):

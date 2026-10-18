@@ -6,5 +6,5 @@ extends Camera2D
 var speed: int = 5
 
 func _process(delta: float) -> void:
-	if is_current() and player:
-		position = lerp(position, player.position, speed * delta)
+	if is_current():
+		global_position = lerp(global_position, player.global_position, speed * delta)
