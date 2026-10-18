@@ -3,7 +3,7 @@ class_name RoomGenerator
 extends Node2D
 
 @export_category("Map Data")
-@export var map_seed: int = 1 :
+@export var map_seed: int = randi() :
 	set(v):
 		map_seed = v
 		if Engine.is_editor_hint():

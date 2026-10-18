@@ -5,13 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cv88xriymblv2" path="res://TerrianGeneration/RoomHelpers/RoomLockTrigger/room_lock_trigger.tscn" id="2_ppslc"]
 [ext_resource type="PackedScene" uid="uid://cmx8ih50c51ds" path="res://TerrianGeneration/RoomHelpers/RoomCameraTrigger/room_camera_trigger.tscn" id="3_yxb0b"]
 [ext_resource type="Script" uid="uid://7s4poke02tk7" path="res://Player/camera_2d.gd" id="4_e2lo4"]
-[ext_resource type="PackedScene" uid="uid://bpbuj3ccfkfl1" path="res://Enemies/enemy_base.tscn" id="7_c37s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_texa1"]
 size = Vector2(218, 219)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d45nn"]
-size = Vector2(273, 272)
+size = Vector2(240, 240)
 
 [node name="1x1TestRoom" type="Node2D" unique_id=1568157732]
 script = ExtResource("1_j8768")
@@ -26,7 +25,7 @@ shape = SubResource("RectangleShape2D_texa1")
 [node name="RoomCameraTrigger" parent="." unique_id=1924123594 instance=ExtResource("3_yxb0b")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCameraTrigger" unique_id=554878714]
-position = Vector2(135.5, 136)
+position = Vector2(136, 136)
 shape = SubResource("RectangleShape2D_d45nn")
 
 [node name="Camera2D" type="Camera2D" parent="RoomCameraTrigger" unique_id=1023546283]
@@ -39,9 +38,5 @@ limit_bottom = 272
 script = ExtResource("4_e2lo4")
 
 [node name="BaseRoom" parent="." unique_id=467001853 instance=ExtResource("1_32wcj")]
-item = null
-enemy = null
 
-[node name="EnemyBase" parent="." unique_id=1661495415 instance=ExtResource("7_c37s2")]
-visible = false
-position = Vector2(194, 88)
+[connection signal="body_exited" from="RoomCameraTrigger" to="RoomCameraTrigger" method="_on_body_exited"]
