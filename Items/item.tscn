@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://l2x6wyqkqlla"]
+
+[ext_resource type="Script" uid="uid://b5exsda02662k" path="res://Items/item.gd" id="1_bkywi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xa11k"]
+
+[node name="Item" type="Area2D" unique_id=1382919986]
+script = ExtResource("1_bkywi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=448491545]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=168875990]
+shape = SubResource("CircleShape2D_xa11k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbdcanctv1634"]
+
+[ext_resource type="Script" uid="uid://bb0o6xthgqcxc" path="res://TerrianGeneration/RoomHelpers/RoomContainer/room_container.gd" id="1_6lr60"]
+
+[node name="RoomContainer" type="Node2D" unique_id=1068315594]
+script = ExtResource("1_6lr60")

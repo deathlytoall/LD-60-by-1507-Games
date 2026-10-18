@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bpbuj3ccfkfl1"]
+
+[ext_resource type="Script" uid="uid://hcw6nytel11y" path="res://Enemies/enemy.gd" id="1_8xqx4"]
+[ext_resource type="PackedScene" uid="uid://l2x6wyqkqlla" path="res://Items/item.tscn" id="2_gk4pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
+size = Vector2(64, 64)
+
+[node name="EnemyBase" type="Area2D" unique_id=1661495415]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_8xqx4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398487537]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xa11k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1828794058]
+scale = Vector2(0.5, 0.5)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2135564362]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Item" parent="." unique_id=1382919986 instance=ExtResource("2_gk4pb")]
+visible = false

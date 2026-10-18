@@ -1,4 +1,5 @@
 @tool
+## @deprecated
 class_name MuseumRoomGenerator
 extends Node2D
 
@@ -36,20 +37,27 @@ extends Node2D
 		if Engine.is_editor_hint():
 			_clear_and_generate()
 
+
 func _ready() -> void:
 	print(common_bag)
 	_generate()
 
+## @deprecated
 func _clear_and_generate() -> void:
 	for child in get_children():
 		child.queue_free()
 	_generate()
 
+## @deprecated
 func _generate() -> void:
+	if common_bag.is_empty():
+		push_warning("Common bag is empty!")
+		return
+	
 	for x in range(0, layout_size.x):
 		for y in range(0, layout_size.y):
 			var room: BaseRoom = common_bag.pick_random().instantiate()
-			var room_size: Vector2 = room.to_global(room.map_to_local(room.room_size))
+			var room_size: Vector2 = room.to_global(room.map_to_local(room.room_size + Vector2i.ONE))
 			room.global_position.x = x * room_size.x
 			room.global_position.y = y * room_size.y
 			add_child(room)

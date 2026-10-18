@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cmx8ih50c51ds"]
+
+[ext_resource type="Script" uid="uid://bjx1pp2yf446u" path="res://TerrianGeneration/RoomHelpers/RoomCameraTrigger/room_camera_trigger.gd" id="1_c3qcc"]
+
+[node name="RoomCameraTrigger" type="Area2D" unique_id=1924123594]
+script = ExtResource("1_c3qcc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
