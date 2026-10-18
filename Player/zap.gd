@@ -34,3 +34,5 @@ func _on_timer_timeout():
 func _on_body_entered(body):
 	if body is BaseRoom:
 		queue_free()
+	elif body is Boss:
+		body.health -= Global.damage * mult

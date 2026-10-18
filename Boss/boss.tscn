@@ -1,23 +1,24 @@
 [gd_scene format=3 uid="uid://b760htbj1m0im"]
 
-[sub_resource type="GDScript" id="GDScript_yueu6"]
-script/source = "class_name Boss
-extends CharacterBody2D
+[ext_resource type="Script" uid="uid://crw1ppl2objwa" path="res://Boss/boss.gd" id="1_2mdct"]
+[ext_resource type="Texture2D" uid="uid://scv70mhyqdrg" path="res://Textures/boss.png" id="2_t20dt"]
 
-func _physics_process(delta: float) -> void:
-	move_and_slide()
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_texa1"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t20dt"]
+radius = 33.0
+height = 160.0
 
 [node name="Boss" type="CharacterBody2D" unique_id=509108122]
-script = SubResource("GDScript_yueu6")
+script = ExtResource("1_2mdct")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=559414245]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+[node name="CooldownTimer" type="Timer" parent="." unique_id=798023633]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1215115756]
-shape = SubResource("RectangleShape2D_texa1")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=854398381]
+texture_filter = 1
+position = Vector2(-4.7683716e-07, -9.536743e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_t20dt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964119411]
+shape = SubResource("CapsuleShape2D_t20dt")
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
