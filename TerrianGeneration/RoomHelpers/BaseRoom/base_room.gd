@@ -66,7 +66,7 @@ func spawn_enemies(amount: int) -> void:
 	var enemy = preload("res://Enemies/enemy_base.tscn")
 	for x in range(0, amount):
 		var enemy_clone = enemy.instantiate()
-		add_child(enemy_clone)
+		add_child.call_deferred(enemy_clone)
 		enemy_clone.global_position = Vector2(global_position.x + randi_range(30,200), global_position.y + randi_range(30,200))
 		print(enemy_clone.global_position)
 		print(enemy)

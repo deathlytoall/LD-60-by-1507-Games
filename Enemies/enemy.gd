@@ -1,6 +1,5 @@
 extends Area2D
 
-@onready var color_rect = $ColorRect
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var health = 10
 var single = false
@@ -14,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if player is CharacterBody2D:
 		var rad = get_angle_to(player.global_position)
 		var velocity = Vector2(cos(rad) * speed, sin(rad) * speed)
