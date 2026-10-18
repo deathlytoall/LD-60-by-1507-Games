@@ -12,6 +12,16 @@ size = Vector2(218, 219)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d45nn"]
 size = Vector2(240, 240)
 
+[sub_resource type="Gradient" id="Gradient_btcbx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e2lo4"]
+gradient = SubResource("Gradient_btcbx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.2)
+metadata/_snap_enabled = true
+
 [node name="1x1TestRoom" type="Node2D" unique_id=1568157732]
 script = ExtResource("1_j8768")
 metadata/_custom_type_script = "uid://bb0o6xthgqcxc"
@@ -38,5 +48,17 @@ limit_bottom = 272
 script = ExtResource("4_e2lo4")
 
 [node name="BaseRoom" parent="." unique_id=467001853 instance=ExtResource("1_32wcj")]
+
+[node name="Lighting" type="Node2D" parent="." unique_id=321825732]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting" unique_id=1507227243]
+position = Vector2(53, 49)
+energy = 0.5
+texture = SubResource("GradientTexture2D_e2lo4")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting" unique_id=1170594337]
+position = Vector2(122, 47)
+energy = 0.5
+texture = SubResource("GradientTexture2D_e2lo4")
 
 [connection signal="body_exited" from="RoomCameraTrigger" to="RoomCameraTrigger" method="_on_body_exited"]

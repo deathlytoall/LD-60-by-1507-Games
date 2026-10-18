@@ -6,6 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://dfm0xg60uokuo" path="res://Textures/mc_damage.png" id="2_k53q1"]
 [ext_resource type="Texture2D" uid="uid://m1tdaxtp5ttr" path="res://Textures/mc_item.png" id="4_fhl08"]
 
+[sub_resource type="Gradient" id="Gradient_od3ui"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fuuh5"]
+gradient = SubResource("Gradient_od3ui")
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
 atlas = ExtResource("2_k53q1")
 region = Rect2(0, 0, 32, 32)
@@ -22,10 +32,6 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_k53q1")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
-atlas = ExtResource("2_k53q1")
-region = Rect2(128, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qemgg"]
 atlas = ExtResource("2_k53q1")
 region = Rect2(160, 0, 32, 32)
@@ -33,6 +39,10 @@ region = Rect2(160, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8viyr"]
 atlas = ExtResource("2_k53q1")
 region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
+atlas = ExtResource("2_k53q1")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm0op"]
 atlas = ExtResource("2_k53q1")
@@ -74,6 +84,10 @@ region = Rect2(480, 0, 32, 32)
 atlas = ExtResource("2_btcbx")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
+atlas = ExtResource("2_btcbx")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
 atlas = ExtResource("2_btcbx")
 region = Rect2(32, 0, 32, 32)
@@ -81,10 +95,6 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhl08"]
 atlas = ExtResource("2_btcbx")
 region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
-atlas = ExtResource("2_btcbx")
-region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_od3ui"]
 atlas = ExtResource("2_btcbx")
@@ -214,13 +224,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_gpjlu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8mwp6")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_qemgg")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8viyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mwp6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sm0op")
@@ -258,13 +268,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_gwnis")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vtle1")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_k53q1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fhl08")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtle1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_od3ui")
@@ -304,7 +314,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -366,14 +376,54 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkt2u"]
 size = Vector2(10, 64)
 
+[sub_resource type="Gradient" id="Gradient_k53q1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_texa1"]
+gradient = SubResource("Gradient_k53q1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 13
+
+[sub_resource type="Gradient" id="Gradient_fhl08"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k53q1"]
+gradient = SubResource("Gradient_fhl08")
+fill = 1
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0.4, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_vtle1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhl08"]
+gradient = SubResource("Gradient_vtle1")
+fill = 1
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
 [node name="Player" type="CharacterBody2D" unique_id=845391095]
 script = ExtResource("1_l8h54")
+
+[node name="BackLight" type="PointLight2D" parent="." unique_id=778181150]
+position = Vector2(1, -73)
+scale = Vector2(0.84375, 0.859375)
+color = Color(0.6508823, 0.9999992, 0.99467844, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_fuuh5")
+texture_scale = 1.26
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1229267119]
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4ntmi")
-animation = &"damage"
+frame = 2
+frame_progress = 0.38164392
 speed_scale = 5.0
 
 [node name="Damage timer" type="Timer" parent="AnimatedSprite2D" unique_id=1950876146]
@@ -398,5 +448,26 @@ color = Color(1, 1, 0, 1)
 
 [node name="Zap" parent="." unique_id=2046089127 instance=ExtResource("2_4ntmi")]
 visible = false
+
+[node name="FrontLight" type="PointLight2D" parent="." unique_id=1510249794]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.84375, 0.859375)
+color = Color(0.6508823, 0.9999992, 0.99467844, 1)
+texture = SubResource("GradientTexture2D_texa1")
+texture_scale = 1.26
+
+[node name="LeftLight" type="PointLight2D" parent="." unique_id=1875608328]
+position = Vector2(-37, -11)
+scale = Vector2(0.84375, 0.859375)
+color = Color(0.6508823, 0.9999992, 0.99467844, 1)
+energy = 0.6
+texture = SubResource("GradientTexture2D_k53q1")
+
+[node name="RightLight" type="PointLight2D" parent="." unique_id=1230334557]
+position = Vector2(42, -9)
+scale = Vector2(0.84375, 0.859375)
+color = Color(0.6508823, 0.9999992, 0.99467844, 1)
+energy = 0.6
+texture = SubResource("GradientTexture2D_fhl08")
 
 [connection signal="timeout" from="AnimatedSprite2D/Damage timer" to="." method="_on_damage_timer_timeout"]

@@ -26,3 +26,6 @@ map_seed = 8
 start_rooms = Array[PackedScene]([ExtResource("4_b3f8j")])
 boss_rooms = Array[PackedScene]([ExtResource("5_lw7lm")])
 upgrade_rooms = Array[PackedScene]([ExtResource("6_sy2ie"), ExtResource("6_sy2ie")])
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1878957120]
+color = Color(0.2469503, 0.2469503, 0.2469503, 1)
