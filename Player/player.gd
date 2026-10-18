@@ -13,6 +13,7 @@ var health: float = 100.0
 var single = 0
 var mult = 1
 var scaler = 1
+var rate = 1.0
 
 
 func _ready():
@@ -29,7 +30,7 @@ func _process(_delta) -> void:
 		attack()
 	if Input.is_action_just_pressed("Mouse_Right"):
 		ranged_attack()
-	$CanvasLayer/Batttery.update_total(health)
+	$CanvasLayer/AnimatedSprite2D.frame = round((100.0 - health) / 20.0)
 
 # movement
 func move() -> void:
@@ -188,6 +189,8 @@ func _on_pick_up(_item):
 		movespeed *= 1.5
 	elif _item == 13:
 		scaler += 1
+	elif _item == 14:
+		rate = .5
 
 func _on_damage_timer_timeout():
 	var prev_frame = animated_sprite_2d.frame
@@ -195,7 +198,7 @@ func _on_damage_timer_timeout():
 	animated_sprite_2d.frame = prev_frame
 
 func _on_timer_timeout():
-	health -= .25
+	health -= .25 * rate
 
 func _on_dash_timer_timeout():
 	if single == 1:
