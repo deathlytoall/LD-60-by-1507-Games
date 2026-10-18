@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2xwpwyawan2f"]
 
 [ext_resource type="Script" uid="uid://x3vw2qrhvghv" path="res://Player/zap.gd" id="1_lqd8q"]
-[ext_resource type="Texture2D" uid="uid://dkjm78jjugfuu" path="res://Textures/projectile_beta.png" id="2_gcbpc"]
+[ext_resource type="Texture2D" uid="uid://cmhci58h35cr6" path="res://Textures/projectile_beta.png" id="2_gcbpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
 size = Vector2(128, 20)

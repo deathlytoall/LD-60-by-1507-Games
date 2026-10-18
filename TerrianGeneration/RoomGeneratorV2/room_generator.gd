@@ -154,7 +154,6 @@ func _render_map(grid: Array[CellState]) -> void:
 		
 		if grid[i] != CellState.None:
 			var map_pos := _index_to_pos(i)
-			print(map_pos)
 			node.global_position = map_pos
 			node.global_position.x *= BaseRoom.ROOM_SIZE.x
 			node.global_position.y *= BaseRoom.ROOM_SIZE.y

@@ -1,9 +1,9 @@
 extends Area2D
 
-var damage = 3
 var speed = 10
 var items = Global.items
-var peirces = 2
+var peirces = 1
+var mult = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,12 +14,13 @@ func _ready():
 func _process(_delta):
 	var rad = rotation
 	position += Vector2(cos(rad) * speed, sin(rad) * speed)
-
+	if Global.items.has(8):
+		mult = 1.5
 
 
 func _on_area_entered(area):
 	if area is Enemy:
-		area.take_damage(3)
+		area.take_damage(Global.damage * mult)
 		if not items.has(3) or peirces == 0:
 			queue_free()
 		else:

@@ -18,7 +18,7 @@ scale = Vector2(0.2, 0.2)
 room_generator = NodePath("../RoomGenerator")
 
 [node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("3_pu5yk")]
-map_seed = 9
+map_seed = -1
 start_rooms = Array[PackedScene]([ExtResource("4_b3f8j")])
 boss_rooms = Array[PackedScene]([ExtResource("5_lw7lm")])
 upgrade_rooms = Array[PackedScene]([ExtResource("6_sy2ie"), ExtResource("6_sy2ie")])

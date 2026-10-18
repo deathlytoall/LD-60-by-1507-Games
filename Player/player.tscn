@@ -430,6 +430,9 @@ speed_scale = 5.0
 wait_time = 0.5
 one_shot = true
 
+[node name="Item Timer" type="Timer" parent="AnimatedSprite2D" unique_id=945800712]
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1612569969]
 position = Vector2(0, 16.16667)
 shape = SubResource("RectangleShape2D_xa11k")
@@ -484,5 +487,15 @@ offset_bottom = 52.0
 wait_time = 2.0
 autostart = true
 
+[node name="Dash Timer" type="Timer" parent="." unique_id=1192810044]
+one_shot = true
+
+[node name="Burst Timer" type="Timer" parent="." unique_id=1954098009]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="AnimatedSprite2D/Damage timer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="AnimatedSprite2D/Item Timer" to="." method="_on_item_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Batttery/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Dash Timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Burst Timer" to="." method="_on_burst_timer_timeout"]

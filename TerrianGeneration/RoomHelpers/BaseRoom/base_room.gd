@@ -38,6 +38,7 @@ extends TileMapLayer
 const ROOM_SIZE = Vector2(16, 16)
 
 func generate_room() -> void:
+	print(1)
 	var room_size := ROOM_SIZE * dimensions
 	
 	# Generate Floor

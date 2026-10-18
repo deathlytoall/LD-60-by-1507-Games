@@ -17,4 +17,8 @@ color = Color(0, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=168875990]
 shape = SubResource("CircleShape2D_xa11k")
 
+[node name="Collect Timer" type="Timer" parent="." unique_id=1921283451]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Collect Timer" to="." method="_on_collect_timer_timeout"]

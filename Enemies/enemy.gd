@@ -55,9 +55,10 @@ func take_damage(damage):
 		single = true
 		var item = preload("res://Items/item.tscn")
 		var item_clone = item.instantiate()
-		get_tree().root.add_child(item_clone)
-		item_clone.global_position = Vector2(global_position.x, global_position.y)
-		item_clone.item_type = -1
+		if randf() > 0.7:
+			get_tree().root.add_child(item_clone)
+			item_clone.global_position = Vector2(global_position.x, global_position.y)
+			item_clone.item_type = -1
 		queue_free()
 		get_parent().enemies_to_kill -= 1
 		if get_parent().enemies_to_kill == 0:
@@ -73,7 +74,7 @@ func _on_player_detection_body_entered(body):
 func _on_body_entered(body):
 	if body is CharacterBody2D:
 		body.take_damage(5)
-	back = -2
+		back = -2
 
 
 func _on_body_exited(body):
