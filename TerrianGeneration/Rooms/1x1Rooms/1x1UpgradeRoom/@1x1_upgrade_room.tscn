@@ -18,6 +18,7 @@ tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAA
 [node name="RoomCameraTrigger" parent="." unique_id=1924123594 instance=ExtResource("3_8i03o")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCameraTrigger" unique_id=560976231]
+visible = false
 position = Vector2(136, 136)
 shape = SubResource("RectangleShape2D_ltjj6")
 

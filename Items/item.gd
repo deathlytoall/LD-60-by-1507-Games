@@ -1,6 +1,6 @@
 extends Area2D
 
-var item_type = randi_range(0, 11)
+var item_type = randi_range(0, 15)
 var collected = false
 var player
 
@@ -23,7 +23,7 @@ func _process(_delta):
 
 func _on_body_entered(_body):
 	if _body is Player:
-		if not Global.items.has(item_type):
+		if not Global.items.has(item_type) and item_type != -1:
 			Global.items.append(item_type)
 			Global.emit_signal("pick_up", item_type)
 		else:

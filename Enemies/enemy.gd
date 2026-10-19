@@ -5,7 +5,7 @@ class_name Enemy
 var health = 10
 var single = false
 var player = null
-var speed = 0.1
+var speed = 1
 var rad: float
 var velocity: Vector2
 var back: = 1
@@ -26,6 +26,7 @@ func _process(_delta):
 		var animation = 0
 		position += velocity
 		velocity = velocity.round()
+		print(velocity)
 		if velocity == Vector2(0, 1):
 			animation = 0
 		elif velocity == Vector2(-1, 1):
@@ -64,10 +65,10 @@ func take_damage(damage):
 			item_clone.global_position = Vector2(global_position.x, global_position.y)
 			item_clone.item_type = -1
 		queue_free()
-		#get_parent().enemies_to_kill -= 1
-		#if get_parent().enemies_to_kill == 0:
-			#get_parent().open_doors()
-			#get_parent().generate_item()
+		get_parent().enemies_to_kill -= 1
+		if get_parent().enemies_to_kill == 0:
+			get_parent().open_doors()
+			get_parent().generate_item()
 
 
 func _on_player_detection_body_entered(body):

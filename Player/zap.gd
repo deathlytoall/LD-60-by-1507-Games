@@ -4,10 +4,13 @@ var speed = 10
 var items = Global.items
 var peirces = 1
 var mult = 1
+var time = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if Global.items.has(2):
+		time = .5
+	$Timer.start(time)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,6 +19,8 @@ func _process(_delta):
 	position += Vector2(cos(rad) * speed, sin(rad) * speed)
 	if Global.items.has(8):
 		mult = 1.5
+	if Global.items.has(2):
+		scale *= 1.1
 
 
 func _on_area_entered(area):

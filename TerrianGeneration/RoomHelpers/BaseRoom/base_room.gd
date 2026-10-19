@@ -83,9 +83,9 @@ func spawn_enemies(amount: int) -> void:
 	for x in range(0, amount):
 		var enemy = preload("res://Enemies/enemy_base.tscn")
 		enemy_clone = enemy.instantiate()
-		add_child.call_deferred(enemy_clone, true)
+		add_child(enemy_clone, true)
 		enemy_clone.global_position = Vector2(global_position.x + randi_range(30,200), global_position.y + randi_range(30,200))
-		
+
 
 func open_doors() -> void:
 	var room_size := ROOM_SIZE * dimensions

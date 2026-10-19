@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bntwi8s4rj2l5"]
+
+[ext_resource type="Script" uid="uid://dn0tynlydtcls" path="res://control.gd" id="1_0fbet"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xa11k"]
+font_size = 59
+
+[node name="Control" type="Control" unique_id=146778277]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fbet")
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1322460727]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+alignment = 1
+vertical = true
+
+[node name="Label" type="Label" parent="BoxContainer" unique_id=266278412]
+layout_mode = 2
+text = "Night in the Museum"
+label_settings = SubResource("LabelSettings_xa11k")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="BoxContainer" unique_id=734648902]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]

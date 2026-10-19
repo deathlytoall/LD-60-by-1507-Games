@@ -29,10 +29,13 @@ func _process(_delta) -> void:
 	move()
 	point()
 	if Input.is_action_just_pressed("Mouse_Left"):
-		attack()
+		print(Global.items)
+		#attack()
 	if Input.is_action_just_pressed("Mouse_Right"):
 		ranged_attack()
-	$CanvasLayer/AnimatedSprite2D.frame = round((100.0 - health) / 20.0)
+	if Input.is_action_just_pressed("Pause"):
+		$Pause.visible = not $Pause.visible
+	$Health/AnimatedSprite2D.frame = roundi((100.0 - health) / 20.0)
 
 # movement
 func move() -> void:

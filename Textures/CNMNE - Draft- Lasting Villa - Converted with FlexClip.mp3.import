@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hbib5wdde1e2"
+path="res://.godot/imported/CNMNE - Draft- Lasting Villa - Converted with FlexClip.mp3-2c92aa8bc25a3d5bdef93d732c2def43.mp3str"
+
+[deps]
+
+source_file="res://Textures/CNMNE - Draft- Lasting Villa - Converted with FlexClip.mp3"
+dest_files=["res://.godot/imported/CNMNE - Draft- Lasting Villa - Converted with FlexClip.mp3-2c92aa8bc25a3d5bdef93d732c2def43.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

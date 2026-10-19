@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://jmm5gub51lx1" path="res://TerrianGeneration/RoomGeneratorV2/room_generator.tscn" id="3_pu5yk"]
 [ext_resource type="PackedScene" uid="uid://dfixwikjbkm88" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1StartingRoom/@1x1_starting_room.tscn" id="4_b3f8j"]
 [ext_resource type="PackedScene" uid="uid://cje04fwjmjrt5" path="res://TerrianGeneration/Rooms/2x2Rooms/2x2BossRoom/@2x2_boss_room.tscn" id="5_lw7lm"]
+[ext_resource type="AudioStream" uid="uid://hbib5wdde1e2" path="res://Textures/CNMNE - Draft- Lasting Villa - Converted with FlexClip.mp3" id="6_qubhg"]
 [ext_resource type="PackedScene" uid="uid://bg4p5ncv0a6sb" path="res://TerrianGeneration/Rooms/1x1Rooms/1x1UpgradeRoom/@1x1_upgrade_room.tscn" id="6_sy2ie"]
+[ext_resource type="Script" uid="uid://dsryqr2qbxi4" path="res://CarterMain/audio_stream_player_2.gd" id="7_qubhg"]
 
 [node name="CarterMain" type="Node2D" unique_id=883495653]
 
@@ -22,3 +24,8 @@ map_seed = 5
 start_rooms = Array[PackedScene]([ExtResource("4_b3f8j")])
 boss_rooms = Array[PackedScene]([ExtResource("5_lw7lm")])
 upgrade_rooms = Array[PackedScene]([ExtResource("6_sy2ie"), ExtResource("6_sy2ie")])
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=947273511]
+stream = ExtResource("6_qubhg")
+autoplay = true
+script = ExtResource("7_qubhg")
