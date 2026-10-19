@@ -1,7 +1,7 @@
 extends Node
 
 signal pick_up(item: int)
-var items = [3,14,15,16,17,18,19,20]
+var items = [14,15,16,17,18,19,20]
 var damage = 3
 
 # Called when the node enters the scene tree for the first time.
