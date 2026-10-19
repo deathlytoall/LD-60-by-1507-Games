@@ -5,7 +5,7 @@ class_name Enemy
 var health = 10
 var single = false
 var player = null
-var speed = 1
+var speed = 0.1
 var rad: float
 var velocity: Vector2
 var back: = 1

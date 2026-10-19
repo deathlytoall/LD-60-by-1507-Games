@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://m1tdaxtp5ttr" path="res://Textures/mc_item.png" id="4_fhl08"]
 [ext_resource type="Texture2D" uid="uid://b6fsdcr7cu4nd" path="res://Textures/display_battery_full.png" id="6_apopc"]
 [ext_resource type="Texture2D" uid="uid://bqtttfxn0qaxn" path="res://Textures/display_battery_diminished.png" id="7_5htga"]
+[ext_resource type="AudioStream" uid="uid://dtw40f1kebitu" path="res://Sounds/Hit.wav" id="7_vtle1"]
 [ext_resource type="Texture2D" uid="uid://ojj14qse2sgd" path="res://Textures/display_battery_half.png" id="8_p5o4e"]
 [ext_resource type="Texture2D" uid="uid://c0rwv6nk6looh" path="res://Textures/display_battery_low.png" id="9_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://d0ebnhowdwamo" path="res://Textures/display_battery_urgent.png" id="10_dkpta"]
@@ -525,6 +526,9 @@ one_shot = true
 [node name="Burst Timer" type="Timer" parent="." unique_id=1954098009]
 wait_time = 0.25
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1041844368]
+stream = ExtResource("7_vtle1")
 
 [connection signal="timeout" from="AnimatedSprite2D/Damage timer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="AnimatedSprite2D/Item Timer" to="." method="_on_item_timer_timeout"]
