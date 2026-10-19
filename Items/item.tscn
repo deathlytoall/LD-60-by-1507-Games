@@ -1,24 +1,86 @@
 [gd_scene format=3 uid="uid://l2x6wyqkqlla"]
 
 [ext_resource type="Script" uid="uid://b5exsda02662k" path="res://Items/item.gd" id="1_bkywi"]
+[ext_resource type="Texture2D" uid="uid://b6fsdcr7cu4nd" path="res://Textures/display_battery_full.png" id="2_rbykx"]
+[ext_resource type="Texture2D" uid="uid://dv1swagr38urv" path="res://Textures/item_mirror.png" id="3_40v5w"]
+[ext_resource type="Texture2D" uid="uid://lpd0s1qtkcmi" path="res://Textures/Moniter.png" id="4_e3wng"]
+[ext_resource type="Texture2D" uid="uid://cgoo5sfa4d1eh" path="res://Textures/item_glass_shard.png" id="5_0fljg"]
+[ext_resource type="Texture2D" uid="uid://bnxa5xodq27gf" path="res://Textures/item_memory_chip.png" id="6_skiio"]
+[ext_resource type="Texture2D" uid="uid://bc0sh3ih6eaie" path="res://Textures/item_ram.png" id="7_yb27u"]
+[ext_resource type="Texture2D" uid="uid://w7eessn7toit" path="res://Textures/item_usb_stick.png" id="8_qe706"]
+[ext_resource type="Texture2D" uid="uid://b4ssww4yd0r5e" path="res://Textures/item_horsey.png" id="9_57pgr"]
+[ext_resource type="Texture2D" uid="uid://h0hu7vsi6cl2" path="res://Textures/item_tesla.png" id="10_aykmd"]
+[ext_resource type="Texture2D" uid="uid://dmv3wnso50tgr" path="res://Textures/item_cpu.png" id="11_r55a2"]
+[ext_resource type="Texture2D" uid="uid://dulunj546m620" path="res://Textures/item_solar_panel.png" id="12_rxmbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xa11k"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_xa11k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rbykx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_40v5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e3wng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0fljg")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_skiio")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yb27u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qe706")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_57pgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aykmd")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_r55a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rxmbx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Item" type="Area2D" unique_id=1382919986]
 script = ExtResource("1_bkywi")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=448491545]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=168875990]
 shape = SubResource("CircleShape2D_xa11k")
 
 [node name="Collect Timer" type="Timer" parent="." unique_id=1921283451]
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=702077469]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xa11k")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Collect Timer" to="." method="_on_collect_timer_timeout"]

@@ -5,8 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bqd5yb7klftg1" path="res://Textures/mc_idle.png" id="2_btcbx"]
 [ext_resource type="Texture2D" uid="uid://dfm0xg60uokuo" path="res://Textures/mc_damage.png" id="2_k53q1"]
 [ext_resource type="Texture2D" uid="uid://m1tdaxtp5ttr" path="res://Textures/mc_item.png" id="4_fhl08"]
-[ext_resource type="PackedScene" uid="uid://fxvkb7f31rav" path="res://Player/batttery.tscn" id="6_fhl08"]
-[ext_resource type="AudioStream" uid="uid://dtw40f1kebitu" path="res://Sounds/Hit.wav" id="7_vtle1"]
+[ext_resource type="Texture2D" uid="uid://b6fsdcr7cu4nd" path="res://Textures/display_battery_full.png" id="6_apopc"]
+[ext_resource type="Texture2D" uid="uid://bqtttfxn0qaxn" path="res://Textures/display_battery_diminished.png" id="7_5htga"]
+[ext_resource type="Texture2D" uid="uid://ojj14qse2sgd" path="res://Textures/display_battery_half.png" id="8_p5o4e"]
+[ext_resource type="Texture2D" uid="uid://c0rwv6nk6looh" path="res://Textures/display_battery_low.png" id="9_gu6f8"]
+[ext_resource type="Texture2D" uid="uid://d0ebnhowdwamo" path="res://Textures/display_battery_urgent.png" id="10_dkpta"]
+[ext_resource type="Texture2D" uid="uid://rje1pc8mbnbj" path="res://Textures/display_battery_empty.png" id="11_lfmf2"]
 
 [sub_resource type="Gradient" id="Gradient_od3ui"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -373,7 +377,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
-size = Vector2(43.333336, 32.333336)
+size = Vector2(72, 32.333336)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkt2u"]
 size = Vector2(10, 64)
@@ -409,6 +413,32 @@ fill_from = Vector2(0, 0.5)
 fill_to = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_xa11k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_apopc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5htga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p5o4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gu6f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dkpta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lfmf2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=845391095]
 scale = Vector2(3, 3)
 script = ExtResource("1_l8h54")
@@ -435,7 +465,7 @@ one_shot = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1612569969]
-position = Vector2(-0.33333334, 16.16667)
+position = Vector2(0, 16.16667)
 shape = SubResource("RectangleShape2D_xa11k")
 
 [node name="Arm" type="Area2D" parent="." unique_id=1924268066]
@@ -478,13 +508,14 @@ texture = SubResource("GradientTexture2D_fhl08")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=775158416]
 
-[node name="Batttery" parent="CanvasLayer" unique_id=1673931325 instance=ExtResource("6_fhl08")]
-offset_left = 11.0
-offset_top = 12.0
-offset_right = 51.0
-offset_bottom = 52.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1931538645]
+texture_filter = 1
+position = Vector2(83, 61)
+scale = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_xa11k")
+frame_progress = 0.44098747
 
-[node name="Timer" type="Timer" parent="CanvasLayer/Batttery" unique_id=1223846471]
+[node name="Timer" type="Timer" parent="CanvasLayer/AnimatedSprite2D" unique_id=1223846471]
 wait_time = 2.0
 autostart = true
 
@@ -495,11 +526,8 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=151580559]
-stream = ExtResource("7_vtle1")
-
 [connection signal="timeout" from="AnimatedSprite2D/Damage timer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="AnimatedSprite2D/Item Timer" to="." method="_on_item_timer_timeout"]
-[connection signal="timeout" from="CanvasLayer/Batttery/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Dash Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Burst Timer" to="." method="_on_burst_timer_timeout"]
