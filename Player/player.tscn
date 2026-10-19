@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfm0xg60uokuo" path="res://Textures/mc_damage.png" id="2_k53q1"]
 [ext_resource type="Texture2D" uid="uid://m1tdaxtp5ttr" path="res://Textures/mc_item.png" id="4_fhl08"]
 [ext_resource type="PackedScene" uid="uid://fxvkb7f31rav" path="res://Player/batttery.tscn" id="6_fhl08"]
+[ext_resource type="AudioStream" uid="uid://dtw40f1kebitu" path="res://Sounds/Hit.wav" id="7_vtle1"]
 
 [sub_resource type="Gradient" id="Gradient_od3ui"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -372,7 +373,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa11k"]
-size = Vector2(72, 32.333336)
+size = Vector2(43.333336, 32.333336)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkt2u"]
 size = Vector2(10, 64)
@@ -434,7 +435,7 @@ one_shot = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1612569969]
-position = Vector2(0, 16.16667)
+position = Vector2(-0.33333334, 16.16667)
 shape = SubResource("RectangleShape2D_xa11k")
 
 [node name="Arm" type="Area2D" parent="." unique_id=1924268066]
@@ -493,6 +494,9 @@ one_shot = true
 [node name="Burst Timer" type="Timer" parent="." unique_id=1954098009]
 wait_time = 0.25
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=151580559]
+stream = ExtResource("7_vtle1")
 
 [connection signal="timeout" from="AnimatedSprite2D/Damage timer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="AnimatedSprite2D/Item Timer" to="." method="_on_item_timer_timeout"]
