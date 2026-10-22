@@ -10,17 +10,13 @@
 
 [node name="CarterMain" type="Node2D" unique_id=883495653]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1412127429]
-position = Vector2(576, 322)
-scale = Vector2(0.1, 0.1)
-
 [node name="Player" parent="." unique_id=845391095 node_paths=PackedStringArray("room_generator") groups=["player"] instance=ExtResource("1_xcg7h")]
 position = Vector2(746, 521)
 scale = Vector2(0.2, 0.2)
 room_generator = NodePath("../RoomGenerator")
 
 [node name="RoomGenerator" parent="." unique_id=728441853 instance=ExtResource("3_pu5yk")]
-map_seed = 5
+map_seed = 10
 start_rooms = Array[PackedScene]([ExtResource("4_b3f8j")])
 boss_rooms = Array[PackedScene]([ExtResource("5_lw7lm")])
 upgrade_rooms = Array[PackedScene]([ExtResource("6_sy2ie"), ExtResource("6_sy2ie")])

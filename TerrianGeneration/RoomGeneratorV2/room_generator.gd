@@ -180,16 +180,19 @@ func _load_all_room_data() -> void:
 	_load_room_data(two_by_one_rooms, "2x1Rooms")
 	_load_room_data(two_by_two_rooms, "2x2Rooms")
 
+
+
 func _load_room_data(dest: Array[PackedScene], root: String):
 	dest.clear()
 	var p := DirAccess.open(ROOM_PATH + "/" + root)
 	for room_dir_name in p.get_directories():
 		var room_dir := DirAccess.open(ROOM_PATH + "/" + root + "/" + room_dir_name)
-		for f in room_dir.get_files():
-			if f.begins_with("@r") and f.ends_with(".tscn"):
-				dest.append(
-					load(ROOM_PATH + "/" + root + "/" + room_dir_name + "/" + f)
-				)
+		var item = GGResourceFinder.find(ROOM_PATH + "/" + root + "/" + room_dir_name, ".tscn")
+		print(item)
+		for filename in item:
+			var scene = ResourceLoader.load(filename)
+			if scene is PackedScene:
+				dest.append(load(filename))
 
 func _place_one_by_two(grid: Array[CellState], i: int) -> bool:
 	# O
